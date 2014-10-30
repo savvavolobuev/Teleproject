@@ -4,5 +4,10 @@
     <string name="app_name">Teleproject</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="begin2_listView1_title">Previously logged</string>
+    <string name="begin2_listView2_title">Best drivers this week</string>
+    <string name="title_activity_begin2">Begin2Activity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_begin1">Begin1Activity</string>
 
 </resources>
