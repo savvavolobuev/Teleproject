@@ -13,6 +13,8 @@ public class MyActivity extends Activity {
 
     private Button toBegin2Button;
 
+    private Button testButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,14 @@ public class MyActivity extends Activity {
             public void onClick(View view) {
                 Intent newIntent = new Intent(MyActivity.this, Begin1Activity.class);
                 startActivity(newIntent);
+            }
+        });
+        testButton = (Button) findViewById(R.id.loginTestButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
