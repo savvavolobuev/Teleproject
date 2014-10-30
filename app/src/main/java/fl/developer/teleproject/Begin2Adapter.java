@@ -1,6 +1,7 @@
 package fl.developer.teleproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -66,18 +67,38 @@ public class Begin2Adapter extends BaseAdapter {
 
         // заполняем View в пункте списка данными из товаров: наименование, цена
         // и картинка
-        ((TextView) localView.findViewById(R.id.personName)).setText(begin2Item.personName);
+        TextView personNameView = (TextView) localView.findViewById(R.id.personName);
+        personNameView.setText(begin2Item.personName);
         ((TextView) localView.findViewById(R.id.description)).setText(begin2Item.description);
         ((TextView) localView.findViewById(R.id.number)).setText(begin2Item.number);
-       // ((ImageView) localView.findViewById(R.id.personImage)).setImageResource(begin2Item.personImage);
-
+        ImageView personImageView = (ImageView) localView.findViewById(R.id.personImage);
+        personImageView.setImageResource(begin2Item.personImage);
+/*
         // set circle bitmap
         Bitmap bm = BitmapFactory.decodeResource(ctx.getResources(),
                 begin2Item.personImage);
 
         ((ImageView) localView.findViewById(R.id.personImage)).setImageBitmap(getCircleBitmap(bm));
+*/
+        personNameView.setTag(i);
+        personImageView.setTag(i);
+
+        personNameView.setOnClickListener(clickListener);
+        personImageView.setOnClickListener(clickListener);
+
         return localView;
     }
+
+    View.OnClickListener clickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+            if (view != null && ((Integer) view.getTag()).intValue() == 0) {
+                Intent intent = new Intent(ctx, LoginActivity.class);
+                ctx.startActivity(intent);
+            }
+        }
+    };
 
     private Bitmap getCircleBitmap(Bitmap bitmap) {
         final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),

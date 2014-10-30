@@ -12,29 +12,28 @@
         android:id="@+id/searchLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
         android:layout_weight="1"
         android:orientation="horizontal"
         >
-        <SearchView
-            android:layout_width="wrap_content"
+
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/searchView"
-            />
-        <TextView
-            android:id="@+id/searchString"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:layout_below="@+id/searchString"
+            android:hint="Type your name here"
+            android:drawableLeft="@drawable/ic_launcher"
             android:layout_gravity="center_vertical"
-            android:text="Type your name here">
-        </TextView>
+            />
+
+
     </LinearLayout>
     <TextView
         android:text="@string/begin2_listView1_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/titleListView1"
-        android:layout_below="@id/searchLayout1"/>
+        android:layout_marginTop="75dp"/>
 
     <ListView
         android:id="@+id/begin2_listView1"
