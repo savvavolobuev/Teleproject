@@ -1,9 +1,9 @@
 package fl.developer.teleproject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -95,7 +95,7 @@ public class Begin2Adapter extends BaseAdapter {
         public void onClick(View view) {
             if (view != null && ((Integer) view.getTag()).intValue() == 0) {
                 Intent intent = new Intent(ctx, LoginActivity.class);
-                ctx.startActivity(intent);
+                ((Activity)ctx).startActivityForResult(intent, Begin2Activity.LOGIN_CODE);
             }
         }
     };

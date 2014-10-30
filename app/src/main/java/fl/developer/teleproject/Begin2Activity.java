@@ -2,6 +2,7 @@ package fl.developer.teleproject;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 
 public class Begin2Activity extends Activity {
 
+    public static final int LOGIN_CODE = 0;
     ArrayList<Begin2Item> itemsGeneral = new ArrayList<Begin2Item>();
     ArrayList<Begin2Item> itemsAdditional = new ArrayList<Begin2Item>();
     Begin2Adapter begin2AdapterGeneral;
@@ -78,5 +80,13 @@ public class Begin2Activity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(LOGIN_CODE == requestCode && LoginActivity.LOGIN_SUCCESFUL == resultCode) {
+            Intent intent = new Intent(Begin2Activity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
