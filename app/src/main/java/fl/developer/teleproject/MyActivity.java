@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class MyActivity extends Activity {
 
+    public static final int LOGIN_REQUEST = 0;
+
     private Button toBegin2Button;
 
     private Button testButton;
@@ -33,11 +35,19 @@ public class MyActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MyActivity.this, LoginActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, LOGIN_REQUEST);
             }
         });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (LOGIN_REQUEST == requestCode && LoginActivity.LOGIN_SUCCESFUL == resultCode) {
+            Intent intent = new Intent(MyActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

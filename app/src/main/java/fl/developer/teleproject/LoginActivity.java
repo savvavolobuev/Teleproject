@@ -14,6 +14,8 @@ import android.widget.ImageButton;
  */
 public class LoginActivity extends Activity {
 
+    public static int LOGIN_SUCCESFUL = 0;
+
     ImageButton closeButton;
     EditText passwordEdit;
     Button loginButton;
@@ -31,6 +33,13 @@ public class LoginActivity extends Activity {
         });
         loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setEnabled(false);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginActivity.this.setResult(LOGIN_SUCCESFUL);
+                finish();
+            }
+        });
         passwordEdit = (EditText) findViewById(R.id.password);
         passwordEdit.addTextChangedListener(new TextWatcher() {
             @Override
