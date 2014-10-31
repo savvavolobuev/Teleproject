@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 public class LoginActivity extends Activity {
 
     public static int LOGIN_SUCCESFUL = 0;
+    public static int LOGIN_FAILED = 1;
 
     ImageButton closeButton;
     EditText passwordEdit;
@@ -28,6 +29,7 @@ public class LoginActivity extends Activity {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LoginActivity.this.setResult(LOGIN_FAILED);
                 LoginActivity.this.finish();
             }
         });

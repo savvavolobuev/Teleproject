@@ -37,7 +37,7 @@ public class Begin2Activity extends Activity {
 
         // ** первый список
         // создаем адаптер
-        begin2AdapterGeneral = new Begin2Adapter(this, itemsGeneral);
+        begin2AdapterGeneral = new Begin2Adapter(this, itemsGeneral, Begin2Adapter.GENERAL_LIST_MODE);
 
         // настраиваем список
         ListView listView1 = (ListView) findViewById(R.id.begin2_listView1);
@@ -45,7 +45,7 @@ public class Begin2Activity extends Activity {
 
         // ** второй список
         // создаем адаптер
-        begin2AdapterAdditional = new Begin2Adapter(this, itemsAdditional);
+        begin2AdapterAdditional = new Begin2Adapter(this, itemsAdditional, Begin2Adapter.ADDITOINAL_LIST_MODE);
 
         // настраиваем список
         ListView listView2 = (ListView) findViewById(R.id.begin2_listView2);

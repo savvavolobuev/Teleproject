@@ -28,10 +28,15 @@ public class Begin2Adapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
     ArrayList<Begin2Item> objects;
+    public static final int GENERAL_LIST_MODE = 0;
+    public static final int ADDITOINAL_LIST_MODE = 1;
 
-    public Begin2Adapter(Context ctx, ArrayList<Begin2Item> objects) {
+    int mode = 0;
+
+    public Begin2Adapter(Context ctx, ArrayList<Begin2Item> objects, int mode) {
         this.ctx = ctx;
         this.objects = objects;
+        this.mode = mode;
         lInflater = (LayoutInflater) ctx
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -60,7 +65,11 @@ public class Begin2Adapter extends BaseAdapter {
         // используем созданные, но не используемые view
         View localView = view;
         if (localView == null) {
-            localView = lInflater.inflate(R.layout.item_begin2, viewGroup, false);
+            if (mode == ADDITOINAL_LIST_MODE) {
+                localView = lInflater.inflate(R.layout.item_additional_begin2, viewGroup, false);
+            } else {
+                localView = lInflater.inflate(R.layout.item_begin2, viewGroup, false);
+            }
         }
 
         Begin2Item begin2Item = (Begin2Item) getItem(i);
@@ -69,10 +78,12 @@ public class Begin2Adapter extends BaseAdapter {
         // и картинка
         TextView personNameView = (TextView) localView.findViewById(R.id.personName);
         personNameView.setText(begin2Item.personName);
-        ((TextView) localView.findViewById(R.id.description)).setText(begin2Item.description);
         ((TextView) localView.findViewById(R.id.number)).setText(begin2Item.number);
         ImageView personImageView = (ImageView) localView.findViewById(R.id.personImage);
         personImageView.setImageResource(begin2Item.personImage);
+        if (mode != ADDITOINAL_LIST_MODE) {
+            ((TextView) localView.findViewById(R.id.description)).setText(begin2Item.description);
+        }
 /*
         // set circle bitmap
         Bitmap bm = BitmapFactory.decodeResource(ctx.getResources(),
