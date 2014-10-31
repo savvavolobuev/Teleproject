@@ -7,8 +7,9 @@
     android:orientation="vertical">
 
     <FrameLayout
+        android:id="@+id/info_container"
         android:layout_width="fill_parent"
-        android:layout_height="128dp"></FrameLayout>
+        android:layout_height="wrap_content"></FrameLayout>
 
     <FrameLayout
         android:id="@+id/events_container"

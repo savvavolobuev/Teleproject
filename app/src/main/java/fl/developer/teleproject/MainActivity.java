@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.events_container, new EventsFragment())
+                    .add(R.id.info_container, new InfoFragment())
                     .commit();
         }
     }
@@ -128,5 +129,19 @@ public class MainActivity extends Activity {
         }
 
 
+    }
+
+    public static class InfoFragment extends Fragment {
+
+
+        public InfoFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_info, container, false);
+            return rootView;
+        }
     }
 }
