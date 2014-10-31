@@ -54,12 +54,12 @@ public class Begin2Activity extends Activity {
 
     // генерируем данные для адаптера
     void fillData() {
-        itemsGeneral.add(new Begin2Item( R.drawable.ic_launcher, "Diego Alves", "Tomorrow, 17:32", ""));
-        itemsGeneral.add(new Begin2Item( R.drawable.ic_launcher, "Alve Diegos", "26 October, 9:21", ""));
+        itemsGeneral.add(new Begin2Item( R.drawable.face_1, "Diego Alves", "Tomorrow, 17:32", ""));
+        itemsGeneral.add(new Begin2Item( R.drawable.face_2, "Alve Diegos", "26 October, 9:21", ""));
 
-        itemsAdditional.add((new Begin2Item( R.drawable.ic_launcher, "Rafael Cabral", "", "52,1")));
-        itemsAdditional.add((new Begin2Item( R.drawable.ic_launcher, "Thiago Silva", "", "52,6")));
-        itemsAdditional.add((new Begin2Item( R.drawable.ic_launcher, "David Luiz", "", "55,2")));
+        itemsAdditional.add((new Begin2Item( R.drawable.face_3, "Rafael Cabral", "", "52,1")));
+        itemsAdditional.add((new Begin2Item( R.drawable.face_4, "Thiago Silva", "", "52,6")));
+        itemsAdditional.add((new Begin2Item( R.drawable.face_5, "David Luiz", "", "55,2")));
     }
 
 
