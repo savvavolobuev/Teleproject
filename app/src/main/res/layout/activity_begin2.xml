@@ -23,7 +23,7 @@
             android:id="@+id/editText"
             android:layout_below="@+id/searchString"
             android:hint="Type your name here"
-            android:drawableLeft="@drawable/ic_launcher"
+            android:drawableLeft="@drawable/search"
             android:layout_gravity="center_vertical"
             android:textSize="20dp" />
 
