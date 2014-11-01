@@ -10,13 +10,19 @@
     android:background="#DCDCDC">
 
     <ImageView
+        android:id="@+id/actionBarLockedImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/act_bar1"/>
+
+    <ImageView
         android:id="@+id/load_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:padding="10dp"
         android:src="@drawable/loading"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/actionBarLockedImage"
         android:layout_marginTop="40dp"/>
 
 </RelativeLayout>

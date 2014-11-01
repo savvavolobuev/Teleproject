@@ -104,7 +104,7 @@ public class Begin2Adapter extends BaseAdapter {
 
         @Override
         public void onClick(View view) {
-            if (view != null && ((Integer) view.getTag()).intValue() == 0) {
+            if (view != null && ((Integer) view.getTag()).intValue() == 0 && GENERAL_LIST_MODE == mode) {
                 Intent intent = new Intent(ctx, LoginActivity.class);
                 ((Activity)ctx).startActivityForResult(intent, Begin2Activity.LOGIN_CODE);
             }
