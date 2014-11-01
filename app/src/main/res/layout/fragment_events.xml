@@ -18,7 +18,7 @@
 
         <TextView
             android:text="My events count"
-            android:textSize="32dp"
+            android:textSize="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,11 +35,13 @@
     </LinearLayout>
 
     <ExpandableListView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/eventsListView"
         android:layout_below="@+id/eventsHeader"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:indicatorLeft="250dp"
+        android:indicatorRight="300dp"/>
 
 
 </RelativeLayout>

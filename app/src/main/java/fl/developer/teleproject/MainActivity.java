@@ -8,13 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.SimpleExpandableListAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
+import fl.developer.teleproject.model.Category;
+import fl.developer.teleproject.model.DriveEvent;
 
 
 public class MainActivity extends Activity {
@@ -66,66 +65,35 @@ public class MainActivity extends Activity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_events, container, false);
             eventsView = (ExpandableListView) rootView.findViewById(R.id.eventsListView);
-            eventsView.setAdapter(initAdapter());
+            eventsView.setAdapter(new CategoriesAdapter(getActivity(),initCategories(),initEvents()));
             return rootView;
         }
 
-        private ExpandableListAdapter initAdapter() {
-            // event categories
-            String[] categories = new String[]{"Revving", "Idling", "Acceleration"};
+        private ArrayList<Category> initCategories() {
+            ArrayList<Category> categories = new ArrayList<Category>();
+            Category category = new Category(R.drawable.revving, "Revving:", 12, 19);
+            categories.add(category);
+            category = new Category(R.drawable.idling, "Idling:", 15, 15);
+            categories.add(category);
+            category = new Category(R.drawable.acceleration, "Acceleration:", 2, 2);
+            categories.add(category);
+            return categories;
+        }
 
-            // events
-            String[] events = new String[]{"9:29 near Woodhouse Rd", "12:42 near Bromton Rd, SW1X 7XL"};
+        private ArrayList<ArrayList<DriveEvent>> initEvents() {
+            ArrayList<ArrayList<DriveEvent>> events = new ArrayList<ArrayList<DriveEvent>>();
+            ArrayList<DriveEvent> categoryChildren = null;
+            DriveEvent event = null;
 
-            // categories collection
-            ArrayList<Map<String, String>> categoriesData;
-
-            // category data collection
-            ArrayList<Map<String, String>> childDataItem;
-
-            // collections wrapper
-            ArrayList<ArrayList<Map<String, String>>> childData;
-
-            // attributes map
-            Map<String, String> m;
-
-            categoriesData = new ArrayList<Map<String, String>>();
-            for (String group : categories) {
-                m = new HashMap<String, String>();
-                m.put("groupName", group);
-                categoriesData.add(m);
+            for (int i = 0; i <3; i++) {
+                categoryChildren = new ArrayList<DriveEvent>();
+                event = new DriveEvent("9:29 near Woodhouse Rd");
+                categoryChildren.add(event);
+                event = new DriveEvent("12:42 near Bromton Rd, SW1X 7XL");
+                categoryChildren.add(event);
+                events.add(categoryChildren);
             }
-
-            String groupFrom[] = new String[]{"groupName"};
-            int groupTo[] = new int[]{android.R.id.text1};
-
-            childData = new ArrayList<ArrayList<Map<String, String>>>();
-
-            for (int i = 0; i < 3; i++) {
-                childDataItem = new ArrayList<Map<String, String>>();
-                for (String event : events) {
-                    m = new HashMap<String, String>();
-                    m.put("eventName", event);
-                    childDataItem.add(m);
-                }
-                childData.add(childDataItem);
-            }
-
-            String childFrom[] = new String[]{"eventName"};
-            int childTo[] = new int[]{android.R.id.text1};
-
-            SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(
-                    getActivity(),
-                    categoriesData,
-                    android.R.layout.simple_expandable_list_item_1,
-                    groupFrom,
-                    groupTo,
-                    childData,
-                    android.R.layout.simple_list_item_1,
-                    childFrom,
-                    childTo);
-
-            return adapter;
+            return events;
         }
 
 
