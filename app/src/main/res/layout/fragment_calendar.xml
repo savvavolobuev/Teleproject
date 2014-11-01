@@ -36,6 +36,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/revving_white"/>
     <ImageView
+        android:alpha="0.5"
         android:paddingBottom="16dp"
         android:layout_alignBottom="@id/calendar_back"
         android:layout_width="fill_parent"

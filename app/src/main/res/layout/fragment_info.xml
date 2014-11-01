@@ -7,6 +7,7 @@
     android:layout_marginTop="16dp">
 
     <ImageView
+        android:alpha="0.5"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/weather_background"
