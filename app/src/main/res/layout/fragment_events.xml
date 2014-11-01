@@ -30,6 +30,7 @@
             android:id="@+id/imageButton"
             android:src="@drawable/settings_grey"
             android:background="@android:color/transparent"
+            android:layout_marginRight="16dp"
             android:layout_alignBaseline="@id/eventsHeader"
             android:layout_alignParentRight="true" />
     </LinearLayout>

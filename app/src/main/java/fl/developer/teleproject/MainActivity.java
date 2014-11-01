@@ -87,9 +87,9 @@ public class MainActivity extends Activity {
 
             for (int i = 0; i <3; i++) {
                 categoryChildren = new ArrayList<DriveEvent>();
-                event = new DriveEvent("9:29 near Woodhouse Rd");
+                event = new DriveEvent("9:29 near <b>Woodhouse Rd</b>");
                 categoryChildren.add(event);
-                event = new DriveEvent("12:42 near Bromton Rd, SW1X 7XL");
+                event = new DriveEvent("12:42 near <b>Bromton Rd, SW1X 7XL</b>");
                 categoryChildren.add(event);
                 events.add(categoryChildren);
             }

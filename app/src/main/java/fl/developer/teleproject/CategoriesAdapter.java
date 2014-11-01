@@ -2,6 +2,7 @@ package fl.developer.teleproject;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,13 +92,13 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View childView, ViewGroup parent) {
         if (childView == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            childView = inflater.inflate(android.R.layout.simple_list_item_1, null);
+            childView = inflater.inflate(R.layout.item_event, null);
         }
 
         DriveEvent event = (DriveEvent) getChild(groupPosition, childPosition);
 
-        TextView description = (TextView) childView.findViewById(android.R.id.text1);
-        description.setText(event.getAddress());
+        TextView description = (TextView) childView.findViewById(R.id.address);
+        description.setText(Html.fromHtml(event.getAddress()));
 
         return childView;
     }
