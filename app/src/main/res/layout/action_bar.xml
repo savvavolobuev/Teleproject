@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:background="#FFFFFF"
     android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#FFFFFF"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/actBarLiner"
+        android:gravity="center_vertical">
 
         <ImageView
+            android:id="@+id/actionBarMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_green"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical">
+
+            </ImageView>
+        <ImageView
             android:id="@+id/actionBarImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/act_bar2"
-            android:layout_gravity="center_horizontal"></ImageView>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/act_bar1"
+            android:layout_marginLeft="20dp"></ImageView>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="4px"
+        android:background="#C0C0C0"
+        android:layout_alignParentBottom="true"></LinearLayout>
 </RelativeLayout>
