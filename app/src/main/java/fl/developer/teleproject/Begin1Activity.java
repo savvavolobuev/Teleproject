@@ -1,12 +1,10 @@
 package fl.developer.teleproject;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -23,14 +21,14 @@ public class Begin1Activity extends Activity {
         setContentView(R.layout.activity_begin1);
 
         //** ActionBar
-        final ViewGroup actionBarLayout = (ViewGroup) getLayoutInflater().inflate(
-                R.layout.action_bar_locked, null);
+//        final ViewGroup actionBarLayout = (ViewGroup) getLayoutInflater().inflate(
+//                R.layout.action_bar_locked, null);
 
-        final ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowHomeEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setCustomView(actionBarLayout);
+//        final ActionBar actionBar = getActionBar();
+//        actionBar.setDisplayShowHomeEnabled(false);
+//        actionBar.setDisplayShowTitleEnabled(false);
+//        actionBar.setDisplayShowCustomEnabled(true);
+//        actionBar.setCustomView(actionBarLayout);
 
         // Получим ссылку на часы
         ImageView clock = (ImageView) findViewById(R.id.load_image);

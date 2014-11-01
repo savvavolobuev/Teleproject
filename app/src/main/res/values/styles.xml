@@ -2,7 +2,19 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="LoginTheme" parent="android:Theme.Holo.Light.Dialog.NoActionBar">
+
+        <item name="android:editTextBackground">@drawable/apptheme_edit_text_holo_light</item>
+
+        <item name="android:buttonStyle">@style/GreenButton</item>
+
+    </style>
+
+    <style name="GreenButton" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+        <item name="android:textColor">@color/green_button_text</item>
     </style>
 
     <style name="main_text">
