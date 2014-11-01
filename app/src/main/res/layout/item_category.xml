@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_width="64dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"/>
 

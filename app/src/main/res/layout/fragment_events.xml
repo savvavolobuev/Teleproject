@@ -35,7 +35,8 @@
             android:layout_alignParentRight="true" />
     </LinearLayout>
 
-    <ExpandableListView
+    <view
+        class="fl.developer.teleproject.CategoriesView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/eventsListView"

@@ -64,10 +64,12 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_events, container, false);
-            eventsView = (ExpandableListView) rootView.findViewById(R.id.eventsListView);
+            eventsView = (CategoriesView) rootView.findViewById(R.id.eventsListView);
             eventsView.setAdapter(new CategoriesAdapter(getActivity(),initCategories(),initEvents()));
             return rootView;
         }
+
+
 
         private ArrayList<Category> initCategories() {
             ArrayList<Category> categories = new ArrayList<Category>();
