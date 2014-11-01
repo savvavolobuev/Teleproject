@@ -41,9 +41,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/eventsListView"
         android:layout_below="@+id/eventsHeader"
-        android:layout_alignParentStart="true"
-        android:indicatorLeft="250dp"
-        android:indicatorRight="300dp"/>
-
+        android:layout_alignParentStart="true"/>
 
 </RelativeLayout>

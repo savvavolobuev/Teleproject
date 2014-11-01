@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <FrameLayout
+        android:background="#333333"
         android:id="@+id/info_container"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"></FrameLayout>

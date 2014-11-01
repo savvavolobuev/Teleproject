@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="256dp"
+    android:background="#333333"
+    android:layout_marginTop="16dp">
+
+    <ImageView
+        android:id="@+id/calendar_back"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar_background"
+        android:scaleType="fitXY"/>
+    <ImageView
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/settings_white"/>
+    <TextView
+        android:id="@+id/header_label"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="My vs site scores"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"/>
+    <ImageView
+        android:id="@+id/toInfo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/revving_white"/>
+    <ImageView
+        android:paddingBottom="16dp"
+        android:layout_alignBottom="@id/calendar_back"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/trend"
+        />
+    <TextView
+        android:id="@+id/scores_label"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_below="@id/calendar_back"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Recently daily scores"
+        android:gravity="center_horizontal"
+        style="@style/additional_text"
+        />
+
+    <ImageView
+        android:layout_below="@id/scores_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cycle"
+        />
+</RelativeLayout>

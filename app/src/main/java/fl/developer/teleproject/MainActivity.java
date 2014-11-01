@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -18,17 +19,39 @@ import fl.developer.teleproject.model.DriveEvent;
 
 public class MainActivity extends Activity {
 
+    public static final int INFO_FRAGMENT = 0;
+    public static final int CALENDAR_FRAGMENT = 1;
+    private InfoFragment infoFragment;
+    private CalendarFragment calendarFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        infoFragment = new InfoFragment();
+        calendarFragment = new CalendarFragment();
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.events_container, new EventsFragment())
-                    .add(R.id.info_container, new InfoFragment())
+                    .add(R.id.info_container, infoFragment)
                     .commit();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        infoFragment = null;
+        calendarFragment = null;
+        super.onDestroy();
+    }
+
+    private void changeInfoFragment() {
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom)
+                .replace(R.id.info_container, calendarFragment.isVisible() ? infoFragment : calendarFragment)
+                .commit();
+    }
+
 
 
     @Override
@@ -111,6 +134,36 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_info, container, false);
+            ImageView toCalendar = (ImageView) rootView.findViewById(R.id.toCalendar);
+            toCalendar.setClickable(true);
+            toCalendar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity)getActivity()).changeInfoFragment();
+                }
+            });
+            return rootView;
+        }
+    }
+
+    public static class CalendarFragment extends Fragment {
+
+
+        public CalendarFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
+            ImageView toInfo = (ImageView) rootView.findViewById(R.id.toInfo);
+            toInfo.setClickable(true);
+            toInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((MainActivity)getActivity()).changeInfoFragment();
+                }
+            });
             return rootView;
         }
     }
