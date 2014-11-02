@@ -19,17 +19,17 @@ public class Begin1Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_begin1);
-
+/*
         //** ActionBar
-//        final ViewGroup actionBarLayout = (ViewGroup) getLayoutInflater().inflate(
-//                R.layout.action_bar_locked, null);
+        final ViewGroup actionBarLayout = (ViewGroup) getLayoutInflater().inflate(
+                R.layout.action_bar_locked, null);
 
-//        final ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayShowHomeEnabled(false);
-//        actionBar.setDisplayShowTitleEnabled(false);
-//        actionBar.setDisplayShowCustomEnabled(true);
-//        actionBar.setCustomView(actionBarLayout);
-
+        final ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(actionBarLayout);
+*/
         // Получим ссылку на часы
         ImageView clock = (ImageView) findViewById(R.id.load_image);
         // анимация для вращения часов

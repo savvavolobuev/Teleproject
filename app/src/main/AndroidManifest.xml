@@ -18,7 +18,8 @@
         <activity
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:name=".Begin1Activity"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,6 +29,11 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor"
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         </activity>
     </application>
 
