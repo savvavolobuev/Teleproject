@@ -18,8 +18,7 @@
         <activity
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:name=".Begin1Activity"
-            android:noHistory="true"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
