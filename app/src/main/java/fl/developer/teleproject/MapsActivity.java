@@ -1,17 +1,23 @@
 package fl.developer.teleproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import fl.developer.teleproject.model.Data;
+import fl.developer.teleproject.model.DriveEvent;
 
 
-public class MapsActivity extends Activity {
+public class MapsActivity extends Activity implements View.OnClickListener {
 
     private Button mapBackButton;
     private Button event1Button;
@@ -35,10 +41,19 @@ public class MapsActivity extends Activity {
     private ImageView event3ImageView;
     private ImageView event4ImageView;
 
+    Data data;
+    int currEvent = 0;
+    private ArrayList<DriveEvent> events = new ArrayList<DriveEvent>();
+    private ArrayList<ImageView> animImages = new ArrayList<ImageView>();
+    private ArrayList<ImageView> activeButtonImages = new ArrayList<ImageView>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        data = new Data();
+        events = data.getAllEvents();
 
         mapBackButton = (Button) findViewById(R.id.mapBackButton);
         event1Button = (Button) findViewById(R.id.event1Button);
@@ -48,6 +63,14 @@ public class MapsActivity extends Activity {
         eventBackButton = (Button) findViewById(R.id.eventBackButton);
         eventNextButton = (Button) findViewById(R.id.eventNextButton);
 
+        mapBackButton.setOnClickListener(this);
+        event1Button.setOnClickListener(this);
+        event2Button.setOnClickListener(this);
+        event3Button.setOnClickListener(this);
+        event4Button.setOnClickListener(this);
+        eventBackButton.setOnClickListener(this);
+        eventNextButton.setOnClickListener(this);
+
         mapTitleTextView = (TextView) findViewById(R.id.mapTitleTextView);
         footerPinkTextView = (TextView) findViewById(R.id.footerPinkTextView);
         footerGrayTextView = (TextView) findViewById(R.id.footerGrayTextView);
@@ -56,13 +79,15 @@ public class MapsActivity extends Activity {
         event2AnimImageView = (ImageView) findViewById(R.id.event2AnimImageView);
         event3AnimImageView = (ImageView) findViewById(R.id.event3AnimImageView);
         event4AnimImageView = (ImageView) findViewById(R.id.event4AnimImageView);
+        animImages.addAll(Arrays.asList(event1AnimImageView,event2AnimImageView,event3AnimImageView,event4AnimImageView));
 
         event1ImageView = (ImageView) findViewById(R.id.event1ImageView);
         event2ImageView = (ImageView) findViewById(R.id.event2ImageView);
         event3ImageView = (ImageView) findViewById(R.id.event3ImageView);
         event4ImageView = (ImageView) findViewById(R.id.event4ImageView);
+        activeButtonImages.addAll(Arrays.asList(event1ImageView,event2ImageView,event3ImageView,event4ImageView));
 
-        //updateInfo(getIntent().getIntExtra(Data.CATEGORY_CODE_TITLE,0), getIntent().getIntExtra(Data.EVENT_CODE_TITLE,0) );
+        updateInfo(getIntent().getIntExtra(Data.EVENT_CODE_TITLE,0));
     }
 
 
@@ -85,7 +110,52 @@ public class MapsActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void updateInfo(int groupPosition, int childPosition ) {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.event1Button:
+                updateInfo(0);
+                break;
+            case R.id.event2Button:
+                updateInfo(1);
+                break;
+            case R.id.event3Button:
+                updateInfo(2);
+                break;
+            case R.id.event4Button:
+                updateInfo(3);
+                break;
+            case R.id.mapBackButton:
+                Intent intent = new Intent(MapsActivity.this,MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.eventBackButton:
+                if (currEvent > 0 ) {
+                    currEvent--;
+                    updateInfo(currEvent);
+                }
+                break;
+            case R.id.eventNextButton:
+                if (currEvent < events.size() - 1 ) {
+                    currEvent++;
+                    updateInfo(currEvent);
+                }
+                break;
+        }
+    }
 
+    private void updateInfo(int eventId) {
+        currEvent = eventId;
+        mapTitleTextView.setText(events.get(eventId).getAddressShort());
+        footerPinkTextView.setText("OverSpeeding: " + (78 + eventId*3) + " mph");
+        footerGrayTextView.setText("Your average speed: " + (50 + (eventId + 1)*0.3*20) + "  site average: " + (50 + (eventId + 1)*0.3*20 - 4.2));
+
+        for (ImageView eventAnim: animImages) {
+            eventAnim.setVisibility(View.GONE);
+        }
+
+        for (ImageView activeButton: activeButtonImages) {
+            activeButton.setVisibility(View.GONE);
+        }
     }
 }

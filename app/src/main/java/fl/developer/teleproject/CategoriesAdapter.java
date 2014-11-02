@@ -96,10 +96,8 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(mContext, MapsActivity.class);
-            //intent.putExtra(Data.CATEGORY_CODE_TITLE, ((Integer) view.getTag(Data.CATEGORY_CODE)).intValue());
-            //intent.putExtra(Data.EVENT_CODE_TITLE, ((Integer) view.getTag(Data.EVENT_CODE)).intValue());
-
-            mContext.startActivity(intent);
+            intent.putExtra(Data.EVENT_CODE_TITLE, ((Integer) view.getTag()).intValue());
+            ((Activity) mContext).startActivity(intent);
         }
 
     };
@@ -116,8 +114,7 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
         TextView description = (TextView) childView.findViewById(R.id.address);
         description.setText(Html.fromHtml(event.getAddress()));
 
-     //   description.setTag(Data.CATEGORY_CODE,groupPosition);
-     //   description.setTag(Data.EVENT_CODE,childPosition);
+        childView.setTag(event.getId());
         childView.setOnClickListener(eventClickListener);
 
         return childView;

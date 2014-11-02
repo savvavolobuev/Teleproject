@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class DriveEvent implements Serializable {
 
-
+    private int id;
     private String day;
     private String time;
     private String addressShort;
@@ -17,11 +17,12 @@ public class DriveEvent implements Serializable {
         this.address = address;
     }
 
-    public DriveEvent(String address, String addressShort, String time, String day) {
+    public DriveEvent(String address, String addressShort, String time, String day, int id) {
         this.address = address;
         this.addressShort = addressShort;
         this.time = time;
         this.day = day;
+        this.id = id;
     }
 
     public String getAddress() {
@@ -38,6 +39,10 @@ public class DriveEvent implements Serializable {
 
     public String getAddressShort() {
         return addressShort;
+    }
+
+    public int getId() {
+        return id;
     }
 
 }
