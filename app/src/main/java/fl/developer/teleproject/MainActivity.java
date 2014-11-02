@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 import fl.developer.teleproject.model.Category;
+import fl.developer.teleproject.model.Data;
 import fl.developer.teleproject.model.DriveEvent;
 
 
@@ -88,12 +89,13 @@ public class MainActivity extends Activity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_events, container, false);
             eventsView = (CategoriesView) rootView.findViewById(R.id.eventsListView);
-            eventsView.setAdapter(new CategoriesAdapter(getActivity(),initCategories(),initEvents()));
+            Data data = new Data();
+            eventsView.setAdapter(new CategoriesAdapter(getActivity(),data.getCategories(),data.getEvents()));
             return rootView;
         }
 
 
-
+/*
         private ArrayList<Category> initCategories() {
             ArrayList<Category> categories = new ArrayList<Category>();
             Category category = new Category(R.drawable.revving, "Revving:", 12, 19);
@@ -120,7 +122,7 @@ public class MainActivity extends Activity {
             }
             return events;
         }
-
+*/
 
     }
 

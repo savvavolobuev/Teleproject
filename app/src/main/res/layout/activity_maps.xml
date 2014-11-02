@@ -20,6 +20,7 @@
             />
         <TextView
             android:text="@string/hello_world"
+            android:id="@+id/mapTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -35,13 +36,7 @@
         android:layout_below="@id/pinkLayout"
         android:background="@drawable/map">
 
-        <ImageView
-            android:layout_width="140px"
-            android:layout_height="140px"
-            android:id="@+id/event1ImageView"
-            android:layout_marginTop="38dp"
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/pink_cycle_2"/>
+
         <Button
             android:layout_width="140px"
             android:layout_height="140px"
@@ -49,14 +44,21 @@
             android:layout_marginTop="38dp"
             android:layout_marginLeft="5dp"
             android:background="@drawable/event_1"/>
-
         <ImageView
             android:layout_width="140px"
             android:layout_height="140px"
-            android:id="@+id/event2ImageView"
-            android:layout_marginTop="42dp"
-            android:layout_marginLeft="83dp"
+            android:id="@+id/event1AnimImageView"
+            android:layout_marginTop="38dp"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/pink_cycle_2"/>
+        <ImageView
+            android:layout_width="140px"
+            android:layout_height="140px"
+            android:id="@+id/event1ImageView"
+            android:layout_marginTop="38dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/event_3_active"/>
+
         <Button
             android:layout_width="140px"
             android:layout_height="140px"
@@ -64,14 +66,21 @@
             android:background="@drawable/event_2"
             android:layout_marginTop="42dp"
             android:layout_marginLeft="83dp" />
-
         <ImageView
             android:layout_width="140px"
             android:layout_height="140px"
-            android:id="@+id/event3ImageView"
-            android:layout_marginTop="142dp"
-            android:layout_marginLeft="153dp"
+            android:id="@+id/event2AnimImageView"
+            android:layout_marginTop="42dp"
+            android:layout_marginLeft="83dp"
             android:src="@drawable/pink_cycle_2"/>
+        <ImageView
+            android:layout_width="140px"
+            android:layout_height="140px"
+            android:id="@+id/event2ImageView"
+            android:layout_marginTop="42dp"
+            android:layout_marginLeft="83dp"
+            android:src="@drawable/event_3_active"/>
+
         <Button
             android:layout_width="140px"
             android:layout_height="140px"
@@ -79,14 +88,21 @@
             android:background="@drawable/event_3"
             android:layout_marginTop="142dp"
             android:layout_marginLeft="153dp"  />
-
         <ImageView
             android:layout_width="140px"
             android:layout_height="140px"
-            android:id="@+id/event4ImageView"
-            android:layout_marginTop="162dp"
-            android:layout_marginLeft="159dp"
+            android:id="@+id/event3AnimImageView"
+            android:layout_marginTop="142dp"
+            android:layout_marginLeft="153dp"
             android:src="@drawable/pink_cycle_2"/>
+        <ImageView
+            android:layout_width="140px"
+            android:layout_height="140px"
+            android:id="@+id/event3ImageView"
+            android:layout_marginTop="142dp"
+            android:layout_marginLeft="153dp"
+            android:src="@drawable/event_3_active"/>
+
         <Button
             android:layout_width="140px"
             android:layout_height="140px"
@@ -94,6 +110,20 @@
             android:background="@drawable/event_3"
             android:layout_marginTop="162dp"
             android:layout_marginLeft="159dp" />
+        <ImageView
+            android:layout_width="140px"
+            android:layout_height="140px"
+            android:id="@+id/event4AnimImageView"
+            android:layout_marginTop="162dp"
+            android:layout_marginLeft="159dp"
+            android:src="@drawable/pink_cycle_2"/>
+        <ImageView
+            android:layout_width="140px"
+            android:layout_height="140px"
+            android:id="@+id/event4ImageView"
+            android:layout_marginTop="162dp"
+            android:layout_marginLeft="159dp"
+            android:src="@drawable/event_3_active"/>
 
         <RelativeLayout
             android:orientation="horizontal"
@@ -129,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/textView"
+                    android:id="@+id/footerPinkTextView"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#E91E63"
                     android:textSize="17dp"/>
@@ -138,7 +168,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="New Text"
-                    android:id="@+id/textView2"
+                    android:id="@+id/footerGrayTextView"
                     android:layout_gravity="center_horizontal"
                     android:textColor="#808080"
                     android:textSize="12dp"

@@ -11,12 +11,18 @@ public class Category implements Serializable{
     private final String name;
     private final int score;
     private int siteAverage;
+    private String averageSpeed;
 
     public Category(int iconRes, String name, int score, int siteAverage) {
         this.iconRes = iconRes;
         this.name = name;
         this.score = score;
         this.siteAverage = siteAverage;
+    }
+
+    public Category(int iconRes, String name, int score, int siteAverage, String averageSpeed) {
+        this(iconRes, name, score, siteAverage);
+        this.averageSpeed = averageSpeed;
     }
 
     public int getIconRes() {
@@ -38,4 +44,13 @@ public class Category implements Serializable{
     public int getSiteAverage() {
         return siteAverage;
     }
+
+    public String getAverageSpeed() {
+        return averageSpeed;
+    }
+
+    public void setAverageSpeed(String averageSpeed) {
+        this.averageSpeed = averageSpeed;
+    }
+
 }

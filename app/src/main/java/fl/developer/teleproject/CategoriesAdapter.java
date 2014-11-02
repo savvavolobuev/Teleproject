@@ -1,6 +1,8 @@
 package fl.developer.teleproject;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import fl.developer.teleproject.model.Category;
+import fl.developer.teleproject.model.Data;
 import fl.developer.teleproject.model.DriveEvent;
 
 /**
@@ -88,6 +91,19 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
         return view;
     }
 
+    View.OnClickListener eventClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(mContext, MapsActivity.class);
+            //intent.putExtra(Data.CATEGORY_CODE_TITLE, ((Integer) view.getTag(Data.CATEGORY_CODE)).intValue());
+            //intent.putExtra(Data.EVENT_CODE_TITLE, ((Integer) view.getTag(Data.EVENT_CODE)).intValue());
+
+            mContext.startActivity(intent);
+        }
+
+    };
+
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View childView, ViewGroup parent) {
         if (childView == null) {
@@ -99,6 +115,10 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
         TextView description = (TextView) childView.findViewById(R.id.address);
         description.setText(Html.fromHtml(event.getAddress()));
+
+     //   description.setTag(Data.CATEGORY_CODE,groupPosition);
+     //   description.setTag(Data.EVENT_CODE,childPosition);
+        childView.setOnClickListener(eventClickListener);
 
         return childView;
     }
