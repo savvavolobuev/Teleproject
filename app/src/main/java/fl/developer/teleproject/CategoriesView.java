@@ -24,6 +24,6 @@ public class CategoriesView extends ExpandableListView {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        setIndicatorBoundsRelative(w-60,w-32);
+        setIndicatorBoundsRelative(w-82,w-5);
     }
 }
