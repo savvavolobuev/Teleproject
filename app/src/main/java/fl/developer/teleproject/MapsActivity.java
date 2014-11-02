@@ -128,8 +128,10 @@ public class MapsActivity extends Activity implements View.OnClickListener {
                 updateInfo(3);
                 break;
             case R.id.mapBackButton:
-                Intent intent = new Intent(MapsActivity.this,MainActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(MapsActivity.this,MainActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //startActivity(intent);
+                finish();
                 break;
             case R.id.eventBackButton:
                 if (currEvent > 0 ) {
