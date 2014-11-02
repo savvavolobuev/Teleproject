@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -150,12 +152,22 @@ public class MapsActivity extends Activity implements View.OnClickListener {
         footerPinkTextView.setText("OverSpeeding: " + (78 + eventId*3) + " mph");
         footerGrayTextView.setText("Your average speed: " + (50 + (eventId + 1)*0.3*20) + "  site average: " + (50 + (eventId + 1)*0.3*20 - 4.2));
 
-        for (ImageView eventAnim: animImages) {
-            eventAnim.setVisibility(View.GONE);
+        for (int i = 0; i < animImages.size(); i++) {
+            if (i == eventId) {
+                animImages.get(i).setVisibility(View.VISIBLE);
+                Animation anim = AnimationUtils.loadAnimation(this, R.anim.event_anim);
+                animImages.get(i).startAnimation(anim);
+            } else {
+                animImages.get(i).setVisibility(View.GONE);
+            }
         }
 
-        for (ImageView activeButton: activeButtonImages) {
-            activeButton.setVisibility(View.GONE);
+        for (int i = 0; i < activeButtonImages.size(); i++) {
+            if (i == eventId) {
+                activeButtonImages.get(i).setVisibility(View.VISIBLE);
+            } else {
+                activeButtonImages.get(i).setVisibility(View.GONE);
+            }
         }
     }
 }
