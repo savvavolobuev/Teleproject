@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,8 @@ import fl.developer.teleproject.model.DriveEvent;
  * Created by alexk on 31.10.2014.
  */
 public class CategoriesAdapter extends BaseExpandableListAdapter {
+
+    public static volatile boolean hasNewEvents = true;
 
     private Context mContext;
     private ArrayList<Category> mCategories;
@@ -83,8 +87,22 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
         name.setText(category.getName());
 
         TextView score = (TextView) view.findViewById(R.id.person_value);
-        score.setText(String.valueOf(category.getScore()));
+        String scoreString = String.valueOf(category.getScore());
+        score.setText(scoreString);
         score.setTextColor(category.getScore() > 10 ? Color.parseColor("#ff39d000") : Color.parseColor("#ffff8800"));
+
+
+        // hardcode for new events notification
+        if (0 == groupPosition) {
+            if (hasNewEvents && !isExpanded) {
+                String newLabel = " (1 new)";
+                SpannableString ss =  new SpannableString(scoreString + newLabel);
+                ss.setSpan(new RelativeSizeSpan(0.6f), scoreString.length(),ss.length(), 0); // set size
+                score.setText(ss);
+            } else {
+                hasNewEvents = false;
+            }
+        }
 
         TextView siteAverage = (TextView) view.findViewById(R.id.site_average);
         siteAverage.setText(category.getSiteAverageString());
