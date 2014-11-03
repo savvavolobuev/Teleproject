@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
@@ -144,6 +146,12 @@ public class MainActivity extends Activity {
                     ((MainActivity)getActivity()).changeInfoFragment();
                 }
             });
+
+            ImageView meterCursor = (ImageView) rootView.findViewById(R.id.meter_cursor);
+            meterCursor.setVisibility(View.GONE);
+            Animation clockTurn = AnimationUtils.loadAnimation(getActivity(), R.anim.meter_anim);
+            meterCursor.startAnimation(clockTurn);
+            meterCursor.setVisibility(View.VISIBLE);
             return rootView;
         }
     }
