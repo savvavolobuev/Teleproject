@@ -38,91 +38,91 @@
 
 
         <Button
-            android:layout_width="140px"
-            android:layout_height="140px"
+            android:layout_width="80px"
+            android:layout_height="80px"
             android:id="@+id/event1Button"
-            android:layout_marginTop="38dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="145px"
+            android:layout_marginLeft="55px"
             android:background="@drawable/event_1"/>
         <ImageView
-            android:layout_width="185px"
-            android:layout_height="185px"
+            android:layout_width="145px"
+            android:layout_height="145px"
             android:id="@+id/event1AnimImageView"
-            android:layout_marginTop="31dp"
-            android:layout_marginLeft="1dp"
+            android:layout_marginTop="110px"
+            android:layout_marginLeft="23px"
             android:src="@drawable/pink_cycle_2"/>
         <ImageView
-            android:layout_width="140px"
-            android:layout_height="140px"
+            android:layout_width="100px"
+            android:layout_height="100px"
             android:id="@+id/event1ImageView"
-            android:layout_marginTop="38dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="132px"
+            android:layout_marginLeft="44px"
             android:src="@drawable/event_1_active"/>
 
         <Button
-            android:layout_width="140px"
-            android:layout_height="140px"
+            android:layout_width="80px"
+            android:layout_height="80px"
             android:id="@+id/event2Button"
             android:background="@drawable/event_2"
-            android:layout_marginTop="42dp"
-            android:layout_marginLeft="83dp" />
+            android:layout_marginTop="183px"
+            android:layout_marginLeft="280px" />
         <ImageView
-            android:layout_width="185px"
-            android:layout_height="185px"
+            android:layout_width="145px"
+            android:layout_height="145px"
             android:id="@+id/event2AnimImageView"
-            android:layout_marginTop="35dp"
-            android:layout_marginLeft="75dp"
+            android:layout_marginTop="144px"
+            android:layout_marginLeft="246px"
             android:src="@drawable/pink_cycle_2"/>
         <ImageView
-            android:layout_width="140px"
-            android:layout_height="140px"
+            android:layout_width="100px"
+            android:layout_height="100px"
             android:id="@+id/event2ImageView"
-            android:layout_marginTop="42dp"
-            android:layout_marginLeft="83dp"
+            android:layout_marginTop="167px"
+            android:layout_marginLeft="268px"
             android:src="@drawable/event_2_active"/>
 
         <Button
-            android:layout_width="140px"
-            android:layout_height="140px"
+            android:layout_width="80px"
+            android:layout_height="80px"
             android:id="@+id/event3Button"
             android:background="@drawable/event_3"
-            android:layout_marginTop="142dp"
-            android:layout_marginLeft="153dp"  />
+            android:layout_marginTop="450px"
+            android:layout_marginLeft="502px"  />
         <ImageView
-            android:layout_width="185px"
-            android:layout_height="185px"
+            android:layout_width="145px"
+            android:layout_height="145px"
             android:id="@+id/event3AnimImageView"
-            android:layout_marginTop="134dp"
-            android:layout_marginLeft="145dp"
+            android:layout_marginTop="413px"
+            android:layout_marginLeft="470px"
             android:src="@drawable/pink_cycle_2"/>
         <ImageView
-            android:layout_width="140px"
-            android:layout_height="140px"
+            android:layout_width="100px"
+            android:layout_height="100px"
             android:id="@+id/event3ImageView"
-            android:layout_marginTop="142dp"
-            android:layout_marginLeft="153dp"
+            android:layout_marginTop="435px"
+            android:layout_marginLeft="492px"
             android:src="@drawable/event_3_active"/>
 
         <Button
-            android:layout_width="140px"
-            android:layout_height="140px"
+            android:layout_width="80px"
+            android:layout_height="80px"
             android:id="@+id/event4Button"
             android:background="@drawable/event_3"
-            android:layout_marginTop="162dp"
-            android:layout_marginLeft="159dp" />
+            android:layout_marginTop="515px"
+            android:layout_marginLeft="515px" />
         <ImageView
-            android:layout_width="185px"
-            android:layout_height="185px"
+            android:layout_width="145px"
+            android:layout_height="145px"
             android:id="@+id/event4AnimImageView"
-            android:layout_marginTop="153dp"
-            android:layout_marginLeft="151dp"
+            android:layout_marginTop="477px"
+            android:layout_marginLeft="486px"
             android:src="@drawable/pink_cycle_2"/>
         <ImageView
-            android:layout_width="140px"
-            android:layout_height="140px"
+            android:layout_width="100px"
+            android:layout_height="100px"
             android:id="@+id/event4ImageView"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="159dp"
+            android:layout_marginTop="500px"
+            android:layout_marginLeft="508px"
             android:src="@drawable/event_3_active"/>
 
         <RelativeLayout
