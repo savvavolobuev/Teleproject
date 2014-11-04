@@ -23,6 +23,7 @@ import fl.developer.teleproject.model.Data;
 
 public class MainActivity extends Activity {
 
+    public static final int WEATHER_ROTATION_DELAY = 7000;
     private InfoFragment infoFragment;
     private CalendarFragment calendarFragment;
     private Handler timer;
@@ -32,7 +33,7 @@ public class MainActivity extends Activity {
             if (infoFragment.isVisible()) {
                 infoFragment.changeWeather();
             }
-            timer.postDelayed(changeWeatherTask, 7000);
+            timer.postDelayed(changeWeatherTask, WEATHER_ROTATION_DELAY);
         }
     };
 
@@ -132,8 +133,8 @@ public class MainActivity extends Activity {
         private int currentWeather = 0;
 
         {
-            weather_backgrounds = new int[]{R.drawable.background_weather};
-            weather_texts = new int[]{R.drawable.weather};
+            weather_backgrounds = new int[]{R.drawable.background_weather,R.drawable.background_weather};
+            weather_texts = new int[]{R.drawable.weather,R.drawable.weather};
         }
 
         public InfoFragment() {
@@ -173,7 +174,7 @@ public class MainActivity extends Activity {
 
                 Bitmap newBackground = BitmapFactory.decodeResource(getResources(), weather_backgrounds[currentWeather]);
                 Bitmap newText = BitmapFactory.decodeResource(getResources(), weather_texts[currentWeather]);
-                Utils.imageViewAnimatedChange(getActivity(),(ImageView) getView().findViewById(R.id.weather_background),newBackground);
+                Utils.imageViewAnimatedChange(getActivity(), (ImageView) getView().findViewById(R.id.weather_background), newBackground);
                 Utils.imageViewAnimatedChange(getActivity(),(ImageView) getView().findViewById(R.id.weather),newText);
             }
         }
