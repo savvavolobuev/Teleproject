@@ -38,7 +38,7 @@
     <view
         class="fl.developer.teleproject.CategoriesView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:id="@+id/eventsListView"
         android:layout_below="@+id/eventsHeader"
         android:layout_alignParentStart="true"/>
