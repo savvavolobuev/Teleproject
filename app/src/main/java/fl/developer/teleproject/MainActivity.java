@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.util.TimerTask;
@@ -26,6 +28,7 @@ public class MainActivity extends Activity {
     public static final int WEATHER_ROTATION_DELAY = 7000;
     private InfoFragment infoFragment;
     private CalendarFragment calendarFragment;
+    private EventsFragment eventsFragment;
     private Handler timer;
     private Runnable changeWeatherTask = new TimerTask() {
         @Override
@@ -44,9 +47,10 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         infoFragment = new InfoFragment();
         calendarFragment = new CalendarFragment();
+        eventsFragment = new EventsFragment();
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.events_container, new EventsFragment())
+                    .add(R.id.events_container, eventsFragment)
                     .add(R.id.info_container, infoFragment)
                     .commit();
         }
@@ -84,6 +88,17 @@ public class MainActivity extends Activity {
                 .commit();
     }
 
+    public void resetEvents(boolean areOldEvents) {
+        CategoriesAdapter adapter;
+        if (areOldEvents) {
+            adapter = new CategoriesAdapter(this, Data.getCategories(), Data.getOldEvents());
+            adapter.setUseForOldEvents(true);
+        } else {
+            adapter = new CategoriesAdapter(this, Data.getCategories(), Data.getEvents());
+        }
+        eventsFragment.getEventsView().setAdapter(adapter);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,6 +124,10 @@ public class MainActivity extends Activity {
      */
     public static class EventsFragment extends Fragment {
 
+        public ExpandableListView getEventsView() {
+            return eventsView;
+        }
+
         ExpandableListView eventsView;
 
         public EventsFragment() {
@@ -119,8 +138,7 @@ public class MainActivity extends Activity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_events, container, false);
             eventsView = (CategoriesView) rootView.findViewById(R.id.eventsListView);
-            Data data = new Data();
-            eventsView.setAdapter(new CategoriesAdapter(getActivity(), data.getCategories(), data.getEvents()));
+            eventsView.setAdapter(new CategoriesAdapter(getActivity(), Data.getCategories(), Data.getEvents()));
             return rootView;
         }
 
@@ -189,16 +207,49 @@ public class MainActivity extends Activity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
+            final View rootView = inflater.inflate(R.layout.fragment_calendar, container, false);
             ImageView toInfo = (ImageView) rootView.findViewById(R.id.toInfo);
             toInfo.setClickable(true);
             toInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     ((MainActivity) getActivity()).changeInfoFragment();
+
+                }
+            });
+            final ImageButton toPrevWeek = (ImageButton) rootView.findViewById(R.id.prev_week);
+            final ImageButton toLastWeek = (ImageButton) rootView.findViewById(R.id.last_week);
+            final ImageView scores = (ImageView) rootView.findViewById(R.id.scores_image);
+            toLastWeek.setEnabled(false);
+            toPrevWeek.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("calendar", "toPrevWeek pressed");
+                    switchWeek(true,toPrevWeek,toLastWeek,scores);
+                }
+            });
+
+            toLastWeek.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("calendar", "toLastWeek pressed");
+                    switchWeek(false,toPrevWeek,toLastWeek,scores);
                 }
             });
             return rootView;
+        }
+
+        private void switchWeek(boolean toPrev, ImageButton toPrevWeek, ImageButton toLastWeek, ImageView scores) {
+            toLastWeek.setEnabled(toPrev);
+            toPrevWeek.setEnabled(!toPrev);
+            // TODO change to real drawable
+            Bitmap nextImage = BitmapFactory.decodeResource(getResources(),toPrev ? R.drawable.cycle : R.drawable.cycle);
+            if (toPrev) {
+                Utils.imageViewAnimatedChange(getActivity(),scores,nextImage,android.R.anim.slide_out_right,android.R.anim.slide_in_left);
+            } else {
+                Utils.imageViewAnimatedChange(getActivity(),scores,nextImage,R.anim.slide_out_left,R.anim.slide_in_right);
+            }
+            ((MainActivity) getActivity()).resetEvents(toPrev);
         }
     }
 }

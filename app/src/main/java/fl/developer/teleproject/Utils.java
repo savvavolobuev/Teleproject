@@ -11,24 +11,41 @@ import android.widget.ImageView;
  */
 public class Utils {
 
-    public static void imageViewAnimatedChange(Context c, final ImageView v, final Bitmap new_image) {
-        final Animation anim_out = AnimationUtils.loadAnimation(c, android.R.anim.fade_out);
-        final Animation anim_in  = AnimationUtils.loadAnimation(c, android.R.anim.fade_in);
-        anim_out.setAnimationListener(new Animation.AnimationListener()
-        {
-            @Override public void onAnimationStart(Animation animation) {}
-            @Override public void onAnimationRepeat(Animation animation) {}
-            @Override public void onAnimationEnd(Animation animation)
-            {
+    public static void imageViewAnimatedChange(Context c, final ImageView v, final Bitmap new_image, int animOutRes, int animInRes) {
+        final Animation animOut = AnimationUtils.loadAnimation(c, animOutRes);
+        final Animation animIn = AnimationUtils.loadAnimation(c, animInRes);
+        animOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 v.setImageBitmap(new_image);
-                anim_in.setAnimationListener(new Animation.AnimationListener() {
-                    @Override public void onAnimationStart(Animation animation) {}
-                    @Override public void onAnimationRepeat(Animation animation) {}
-                    @Override public void onAnimationEnd(Animation animation) {}
+                animIn.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                    }
                 });
-                v.startAnimation(anim_in);
+                v.startAnimation(animIn);
             }
         });
-        v.startAnimation(anim_out);
+        v.startAnimation(animOut);
+    }
+
+    public static void imageViewAnimatedChange(Context c, final ImageView v, final Bitmap new_image) {
+        imageViewAnimatedChange(c,v,new_image,android.R.anim.fade_out,android.R.anim.fade_in);
     }
 }
