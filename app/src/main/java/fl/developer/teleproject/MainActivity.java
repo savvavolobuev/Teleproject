@@ -2,7 +2,10 @@ package fl.developer.teleproject;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,19 +16,26 @@ import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
+import java.util.TimerTask;
 
-import fl.developer.teleproject.model.Category;
 import fl.developer.teleproject.model.Data;
-import fl.developer.teleproject.model.DriveEvent;
 
 
 public class MainActivity extends Activity {
 
-    public static final int INFO_FRAGMENT = 0;
-    public static final int CALENDAR_FRAGMENT = 1;
     private InfoFragment infoFragment;
     private CalendarFragment calendarFragment;
+    private Handler timer;
+    private Runnable changeWeatherTask = new TimerTask() {
+        @Override
+        public void run() {
+            if (infoFragment.isVisible()) {
+                infoFragment.changeWeather();
+            }
+            timer.postDelayed(changeWeatherTask, 7000);
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +49,30 @@ public class MainActivity extends Activity {
                     .add(R.id.info_container, infoFragment)
                     .commit();
         }
+        timer = new Handler();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Log.d("weather", "onResume");
+        changeWeatherTask.run();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Log.d("weather", "onPause");
+        timer.removeCallbacks(changeWeatherTask);
     }
 
     @Override
     protected void onDestroy() {
         infoFragment = null;
         calendarFragment = null;
+        timer.removeCallbacks(changeWeatherTask);
+        timer = null;
         super.onDestroy();
     }
 
@@ -54,7 +82,6 @@ public class MainActivity extends Activity {
                 .replace(R.id.info_container, calendarFragment.isVisible() ? infoFragment : calendarFragment)
                 .commit();
     }
-
 
 
     @Override
@@ -92,44 +119,22 @@ public class MainActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_events, container, false);
             eventsView = (CategoriesView) rootView.findViewById(R.id.eventsListView);
             Data data = new Data();
-            eventsView.setAdapter(new CategoriesAdapter(getActivity(),data.getCategories(),data.getEvents()));
+            eventsView.setAdapter(new CategoriesAdapter(getActivity(), data.getCategories(), data.getEvents()));
             return rootView;
         }
-
-
-/*
-        private ArrayList<Category> initCategories() {
-            ArrayList<Category> categories = new ArrayList<Category>();
-            Category category = new Category(R.drawable.revving, "Revving:", 12, 19);
-            categories.add(category);
-            category = new Category(R.drawable.idling, "Idling:", 15, 15);
-            categories.add(category);
-            category = new Category(R.drawable.acceleration, "Acceleration:", 2, 2);
-            categories.add(category);
-            return categories;
-        }
-
-        private ArrayList<ArrayList<DriveEvent>> initEvents() {
-            ArrayList<ArrayList<DriveEvent>> events = new ArrayList<ArrayList<DriveEvent>>();
-            ArrayList<DriveEvent> categoryChildren = null;
-            DriveEvent event = null;
-
-            for (int i = 0; i <3; i++) {
-                categoryChildren = new ArrayList<DriveEvent>();
-                event = new DriveEvent("9:29 near <b>Woodhouse Rd</b>");
-                categoryChildren.add(event);
-                event = new DriveEvent("12:42 near <b>Bromton Rd, SW1X 7XL</b>");
-                categoryChildren.add(event);
-                events.add(categoryChildren);
-            }
-            return events;
-        }
-*/
 
     }
 
     public static class InfoFragment extends Fragment {
 
+        public static int[] weather_backgrounds;
+        public static int[] weather_texts;
+        private int currentWeather = 0;
+
+        {
+            weather_backgrounds = new int[]{R.drawable.background_weather};
+            weather_texts = new int[]{R.drawable.weather};
+        }
 
         public InfoFragment() {
         }
@@ -143,7 +148,7 @@ public class MainActivity extends Activity {
             toCalendar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity)getActivity()).changeInfoFragment();
+                    ((MainActivity) getActivity()).changeInfoFragment();
                 }
             });
 
@@ -153,6 +158,24 @@ public class MainActivity extends Activity {
             meterCursor.startAnimation(clockTurn);
             meterCursor.setVisibility(View.VISIBLE);
             return rootView;
+        }
+
+
+        public void changeWeather() {
+           // Log.d("weather", "changeWeather, isVisible: " + isVisible() + ", currentWeather: " + currentWeather);
+            if (weather_backgrounds.length > 1) {
+
+                if (currentWeather < weather_backgrounds.length - 1) {
+                    currentWeather++;
+                } else {
+                    currentWeather = 0;
+                }
+
+                Bitmap newBackground = BitmapFactory.decodeResource(getResources(), weather_backgrounds[currentWeather]);
+                Bitmap newText = BitmapFactory.decodeResource(getResources(), weather_texts[currentWeather]);
+                Utils.imageViewAnimatedChange(getActivity(),(ImageView) getView().findViewById(R.id.weather_background),newBackground);
+                Utils.imageViewAnimatedChange(getActivity(),(ImageView) getView().findViewById(R.id.weather),newText);
+            }
         }
     }
 
@@ -171,7 +194,7 @@ public class MainActivity extends Activity {
             toInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((MainActivity)getActivity()).changeInfoFragment();
+                    ((MainActivity) getActivity()).changeInfoFragment();
                 }
             });
             return rootView;

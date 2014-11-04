@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/weather_background"
-        android:src="@drawable/backround_weather"
+        android:src="@drawable/background_weather"
         android:scaleType="fitXY" />
 
     <ImageView
