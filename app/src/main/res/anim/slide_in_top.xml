@@ -6,6 +6,6 @@
         android:propertyName="y"
         android:valueType="floatType"
         android:valueTo="0"
-        android:valueFrom="-512"
+        android:valueFrom="-448"
         android:duration="500"/>
 </set>

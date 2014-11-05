@@ -23,8 +23,6 @@ import fl.developer.teleproject.model.DriveEvent;
  */
 public class CategoriesAdapter extends BaseExpandableListAdapter {
 
-    public static volatile boolean hasNewEvents = true;
-
     private Context mContext;
     private ArrayList<Category> mCategories;
     private ArrayList<ArrayList<DriveEvent>> mEvents;
@@ -87,9 +85,13 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
         name.setText(category.getName());
 
         TextView score = (TextView) view.findViewById(R.id.person_value);
-        String scoreString = String.valueOf(category.getScore());
+        double scoreValue = 0;
+        for (DriveEvent child : mEvents.get(groupPosition)) {
+            scoreValue += child.getScore();
+        }
+        String scoreString = String.valueOf(scoreValue);
         score.setText(scoreString);
-        score.setTextColor(category.getScore() < category.getSiteAverage() ? Color.parseColor("#ff39d000") : Color.parseColor("#ffff8800"));
+        score.setTextColor(scoreValue < category.getSiteAverage() ? Color.parseColor("#ff39d000") : Color.parseColor("#ffff8800"));
 
 
         // hardcode for new events notification
@@ -133,10 +135,14 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
         TextView description = (TextView) childView.findViewById(R.id.address);
         String day = event.getDay();
-        if ("Today".equals(day)) {
-            description.setText(Html.fromHtml("<font color=#e91e63>" + day + ", " + event.getAddress() + "</font>"));
+        if (!useForOldEvents) {
+            if ("Today".equals(day)) {
+                description.setText(Html.fromHtml("<font color=#e91e63>" + day + ", " + event.getAddress() + "</font>"));
+            } else {
+                description.setText(Html.fromHtml(day + ", " + event.getAddress()));
+            }
         } else {
-            description.setText(Html.fromHtml(day + ", " + event.getAddress()));
+            description.setText(Html.fromHtml("Monday, " + event.getAddress()));
         }
         if (!event.isFake()) {
             childView.setTag(event.getId());

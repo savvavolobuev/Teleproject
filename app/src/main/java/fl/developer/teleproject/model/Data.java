@@ -12,7 +12,7 @@ public class Data {
 
     private static ArrayList<Category> categories;
     private static ArrayList<ArrayList<DriveEvent>> events;
-    private static ArrayList<ArrayList<DriveEvent>> oldEvents;
+    private static ArrayList<ArrayList<DriveEvent>> oldEvents = new ArrayList<ArrayList<DriveEvent>>();
     private static ArrayList<DriveEvent> mapEvents = new ArrayList<DriveEvent>();
 
     public static final int CATEGORY_CODE = 0;
