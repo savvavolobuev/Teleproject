@@ -41,17 +41,17 @@ public class Data {
 
     private static ArrayList<Category> initCategories() {
         ArrayList<Category> categories = new ArrayList<Category>();
-        Category category = new Category(R.drawable.revving, "Revving:", 12, 19);
+        Category category = new Category(R.drawable.revving, "Revving:", 5.5, 11.1);
         categories.add(category);
-        category = new Category(R.drawable.idling, "Idling:", 15, 15);
+        category = new Category(R.drawable.idling, "Idling:", 41.0, 42.2);
         categories.add(category);
-        category = new Category(R.drawable.acceleration, "Acceleration:", 2, 2);
+        category = new Category(R.drawable.acceleration, "Acceleration:", 12.8, 10.0);
         categories.add(category);
-        category = new Category(R.drawable.breaking, "Braking:", 1, 4);
+        category = new Category(R.drawable.breaking, "Breaking:", 1.3, 3.8);
         categories.add(category);
-        category = new Category(R.drawable.speeding, "Over Speeding:", 2, 3);
+        category = new Category(R.drawable.speeding, "Over Speeding:", 66.0, 59.2);
         categories.add(category);
-        category = new Category(R.drawable.fuel, "Fuel:", 3, 5);
+        category = new Category(R.drawable.fuel, "Fuel:", 22.2, 21.0);
         categories.add(category);
         return categories;
     }
@@ -86,9 +86,11 @@ public class Data {
         // Acceleration
         categoryChildren = new ArrayList<DriveEvent>();
         event = new DriveEvent("17:20 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "17:20", "Today", 3.8,2, false);
+        mapEvents.add(event);
         categoryChildren.add(event);
         id++;
         event = new DriveEvent("17:50 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "17:50", "Today", 9.0,3, false);
+        mapEvents.add(event);
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);

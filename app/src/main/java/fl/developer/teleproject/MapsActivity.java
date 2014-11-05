@@ -1,7 +1,6 @@
 package fl.developer.teleproject;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,8 +54,7 @@ public class MapsActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        data = new Data();
-        events = data.getAllEvents();
+        events = data.getMapEvents();
 
         mapBackButton = (Button) findViewById(R.id.mapBackButton);
         event1Button = (Button) findViewById(R.id.event1Button);
