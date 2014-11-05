@@ -12,17 +12,19 @@ public class DriveEvent implements Serializable {
     private String time;
     private String addressShort;
     private final String address;
+    private boolean fake;
 
     public DriveEvent(String address) {
         this.address = address;
     }
 
-    public DriveEvent(String address, String addressShort, String time, String day, int id) {
+    public DriveEvent(String address, String addressShort, String time, String day, int id, boolean fake) {
         this.address = address;
         this.addressShort = addressShort;
         this.time = time;
         this.day = day;
         this.id = id;
+        this.fake = fake;
     }
 
     public String getAddress() {
@@ -45,4 +47,7 @@ public class DriveEvent implements Serializable {
         return id;
     }
 
+    public boolean isFake() {
+        return fake;
+    }
 }

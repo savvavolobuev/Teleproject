@@ -45,6 +45,12 @@ public class Data {
         categories.add(category);
         category = new Category(R.drawable.acceleration, "Acceleration:", 2, 2);
         categories.add(category);
+        category = new Category(R.drawable.breaking, "Braking:", 1, 4);
+        categories.add(category);
+        category = new Category(R.drawable.speeding, "Over Speeding:", 2, 3);
+        categories.add(category);
+        category = new Category(R.drawable.fuel, "Fuel:", 3, 5);
+        categories.add(category);
         return categories;
     }
 
@@ -52,30 +58,85 @@ public class Data {
         ArrayList<ArrayList<DriveEvent>> events = new ArrayList<ArrayList<DriveEvent>>();
         int id = 0;
 
+        // Revving
         ArrayList<DriveEvent> categoryChildren = new ArrayList<DriveEvent>();
-        DriveEvent event = new DriveEvent("10:35 near <b>5 Green Avenue, Apt. 3</b>", "5 Green Avenue, Apt. 3", "10:35", "Monday", id);
+        DriveEvent event = new DriveEvent("10:10 near <b>5 Green Avenue, Apt. 3</b>", "5 Green Avenue, Apt. 3", "10:10", "Today", id, false);
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
         allEvents.addAll(categoryChildren);
 
+
+        // Idling
         categoryChildren = new ArrayList<DriveEvent>();
-        event = new  DriveEvent("06:55 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "06:55", "Monday", id);
+        event = new DriveEvent("12:01 near <b>Woodhouse Rd</b>", "Woodhouse Rd", "12:01", "Today", id, false);
+        categoryChildren.add(event);
+        id++;
+        event = new DriveEvent("10:10 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "10:10", "Wednesday", id, true);
+        categoryChildren.add(event);
+        id++;
+        event = new DriveEvent("10:40 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "10:40", "Tuesday", id, true);
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
         allEvents.addAll(categoryChildren);
 
+        // Acceleration
         categoryChildren = new ArrayList<DriveEvent>();
-        event = new  DriveEvent("9:29 near <b>Woodhouse Rd</b>", "Woodhouse Rd", "9:29", "Monday", id);
+        event = new DriveEvent("17:20 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "17:20", "Today", id, false);
         categoryChildren.add(event);
         id++;
-        event = new  DriveEvent("12:42 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "12:42", "Monday",id );
+        event = new DriveEvent("17:50 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "17:50", "Today", id, false);
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
         allEvents.addAll(categoryChildren);
 
+        // Braking
+        categoryChildren = new ArrayList<DriveEvent>();
+        event = new  DriveEvent("10:20 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "10:20", "Tuesday", id, true);
+        categoryChildren.add(event);
+        id++;
+        events.add(categoryChildren);
+        allEvents.addAll(categoryChildren);
+
+        //Over Speeding
+        categoryChildren = new ArrayList<DriveEvent>();
+        event = new  DriveEvent("13:22 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "13:22", "Today", id, true);
+        categoryChildren.add(event);
+        id++;
+        event = new  DriveEvent("15:40 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "15:40", "Today", id, true);
+        categoryChildren.add(event);
+        id++;
+        event = new  DriveEvent("12:20 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "12:20", "Wednesday", id, true);
+        categoryChildren.add(event);
+        id++;
+        event = new  DriveEvent("13:01 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "13:01", "Wednesday", id, true);
+        categoryChildren.add(event);
+        id++;
+        event = new  DriveEvent("10:10 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "10:10", "Tuesday", id, true);
+        categoryChildren.add(event);
+        id++;
+        event = new  DriveEvent("10:44 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "10:44", "Tuesday", id, true);
+        categoryChildren.add(event);
+        id++;
+        events.add(categoryChildren);
+        allEvents.addAll(categoryChildren);
+
+        // Fuel
+        categoryChildren = new ArrayList<DriveEvent>();
+        events.add(categoryChildren);
+        event = new  DriveEvent("17:00 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "17:00", "Today", id, true);
+        categoryChildren.add(event);
+        id++;
+        event = new  DriveEvent("15:20 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "15:20", "Wednesday", id, true);
+        categoryChildren.add(event);
+        id++;
+        event = new  DriveEvent("10:59 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "10:59", "Tuesday", id, true);
+        categoryChildren.add(event);
+        id++;
+        events.add(categoryChildren);
+        allEvents.addAll(categoryChildren);
 
         return events;
     }
@@ -85,22 +146,22 @@ public class Data {
         int id = 0;
 
         ArrayList<DriveEvent> categoryChildren = new ArrayList<DriveEvent>();
-        DriveEvent event = new DriveEvent("9:29 near <b>Woodhouse Rd</b>", "Woodhouse Rd", "9:29", "Monday", id);
+        DriveEvent event = new DriveEvent("9:29 near <b>Woodhouse Rd</b>", "Woodhouse Rd", "9:29", "Monday", id, true);
         categoryChildren.add(event);
         id++;
-        event = new DriveEvent("12:42 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "12:42", "Monday", id);
-        categoryChildren.add(event);
-        id++;
-        events.add(categoryChildren);
-
-        categoryChildren = new ArrayList<DriveEvent>();
-        event = new DriveEvent("06:55 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "06:55", "Monday", id);
+        event = new DriveEvent("12:42 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "12:42", "Monday", id, true);
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
 
         categoryChildren = new ArrayList<DriveEvent>();
-        event = new DriveEvent("10:35 near <b>5 Green Avenue, Apt. 3</b>", "5 Green Avenue, Apt. 3", "10:35", "Monday", id);
+        event = new DriveEvent("06:55 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "06:55", "Monday", id, true);
+        categoryChildren.add(event);
+        id++;
+        events.add(categoryChildren);
+
+        categoryChildren = new ArrayList<DriveEvent>();
+        event = new DriveEvent("10:35 near <b>5 Green Avenue, Apt. 3</b>", "5 Green Avenue, Apt. 3", "10:35", "Monday", id, true);
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);

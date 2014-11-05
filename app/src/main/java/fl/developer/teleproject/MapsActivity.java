@@ -45,6 +45,7 @@ public class MapsActivity extends Activity implements View.OnClickListener {
 
     Data data;
     int currEvent = 0;
+    int currImg=0;
     private ArrayList<DriveEvent> events = new ArrayList<DriveEvent>();
     private ArrayList<ImageView> animImages = new ArrayList<ImageView>();
     private ArrayList<ImageView> activeButtonImages = new ArrayList<ImageView>();
@@ -136,13 +137,19 @@ public class MapsActivity extends Activity implements View.OnClickListener {
             case R.id.eventBackButton:
                 if (currEvent > 0 ) {
                     currEvent--;
-                    updateInfo(currEvent);
+                    if (!events.get(currEvent).isFake() && currImg > 0) {
+                        currImg--;
+                        updateInfo(currEvent);
+                    }
                 }
                 break;
             case R.id.eventNextButton:
                 if (currEvent < events.size() - 1 ) {
                     currEvent++;
-                    updateInfo(currEvent);
+                    if (!events.get(currEvent).isFake() && currImg < activeButtonImages.size() - 1) {
+                        currImg++;
+                        updateInfo(currEvent);
+                    }
                 }
                 break;
         }
@@ -150,26 +157,43 @@ public class MapsActivity extends Activity implements View.OnClickListener {
 
     private void updateInfo(int eventId) {
         currEvent = eventId;
-        mapTitleTextView.setText(events.get(eventId).getAddressShort());
-        footerPinkTextView.setText("OverSpeeding: " + (78 + eventId*3) + " mph");
-        footerGrayTextView.setText("Your average speed: " + (50 + (eventId + 1)*0.3*20) + "  site average: " + (50 + (eventId + 1)*0.3*20 - 4.2));
+        switch (eventId) {
+            case 0:
+                currImg = 0;
+                break;
+            case 1:
+                currImg = 1;
+                break;
+            case 5:
+                currImg = 2;
+                break;
+            case 6:
+                currImg = 3;
+                break;
+        }
+        if (!events.get(eventId).isFake()) {
+            mapTitleTextView.setText(events.get(eventId).getAddressShort());
+            footerPinkTextView.setText("OverSpeeding: " + (78 + eventId*3) + " mph");
+            footerGrayTextView.setText("Your average speed: " + (50 + (eventId + 1)*0.3*20) + "  site average: " + (50 + (eventId + 1)*0.3*20 - 4.2));
 
-        for (int i = 0; i < animImages.size(); i++) {
-            if (i == eventId) {
-                animImages.get(i).setVisibility(View.VISIBLE);
-                Animation anim = AnimationUtils.loadAnimation(this, R.anim.event_anim);
-                animImages.get(i).startAnimation(anim);
-            } else {
-                animImages.get(i).setVisibility(View.GONE);
+            for (int i = 0; i < animImages.size(); i++) {
+                if (i == currImg) {
+                    animImages.get(i).setVisibility(View.VISIBLE);
+                    Animation anim = AnimationUtils.loadAnimation(this, R.anim.event_anim);
+                    animImages.get(i).startAnimation(anim);
+                } else {
+                    animImages.get(i).setVisibility(View.GONE);
+                }
+            }
+
+            for (int i = 0; i < activeButtonImages.size(); i++) {
+                if (i == currImg) {
+                    activeButtonImages.get(i).setVisibility(View.VISIBLE);
+                } else {
+                    activeButtonImages.get(i).setVisibility(View.GONE);
+                }
             }
         }
 
-        for (int i = 0; i < activeButtonImages.size(); i++) {
-            if (i == eventId) {
-                activeButtonImages.get(i).setVisibility(View.VISIBLE);
-            } else {
-                activeButtonImages.get(i).setVisibility(View.GONE);
-            }
-        }
     }
 }
