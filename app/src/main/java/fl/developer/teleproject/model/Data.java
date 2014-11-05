@@ -13,7 +13,7 @@ public class Data {
     private static ArrayList<Category> categories;
     private static ArrayList<ArrayList<DriveEvent>> events;
     private static ArrayList<ArrayList<DriveEvent>> oldEvents;
-    private static ArrayList<DriveEvent> allEvents = new ArrayList<DriveEvent>();
+    private static ArrayList<DriveEvent> mapEvents = new ArrayList<DriveEvent>();
 
     public static final int CATEGORY_CODE = 0;
     public static final String CATEGORY_CODE_TITLE = "category";
@@ -41,38 +41,39 @@ public class Data {
 
     private static ArrayList<Category> initCategories() {
         ArrayList<Category> categories = new ArrayList<Category>();
-        Category category = new Category(R.drawable.revving, "Revving:", 5.5, 11.1);
+        Category category = new Category(R.drawable.revving, "Revving:", 12, 19);
         categories.add(category);
-        category = new Category(R.drawable.idling, "Idling:", 41.0, 42.2);
+        category = new Category(R.drawable.idling, "Idling:", 15, 15);
         categories.add(category);
-        category = new Category(R.drawable.acceleration, "Acceleration:", 12.8, 10.0);
+        category = new Category(R.drawable.acceleration, "Acceleration:", 2, 2);
         categories.add(category);
-        category = new Category(R.drawable.breaking, "Breaking:", 1.3, 3.8);
+        category = new Category(R.drawable.breaking, "Braking:", 1, 4);
         categories.add(category);
-        category = new Category(R.drawable.speeding, "Over Speeding:", 66.0, 59.2);
+        category = new Category(R.drawable.speeding, "Over Speeding:", 2, 3);
         categories.add(category);
-        category = new Category(R.drawable.fuel, "Fuel:", 22.2, 21.0);
+        category = new Category(R.drawable.fuel, "Fuel:", 3, 5);
         categories.add(category);
         return categories;
     }
 
     private static ArrayList<ArrayList<DriveEvent>> initEvents() {
         ArrayList<ArrayList<DriveEvent>> events = new ArrayList<ArrayList<DriveEvent>>();
-        int id = 0;
+        int id = 20;
 
         // Revving
         ArrayList<DriveEvent> categoryChildren = new ArrayList<DriveEvent>();
-        DriveEvent event = new DriveEvent("10:10 near <b>5 Green Avenue, Apt. 3</b>", "5 Green Avenue, Apt. 3", "10:10", "Today",5.5, id, false);
+        DriveEvent event = new DriveEvent("10:10 near <b>5 Green Avenue, Apt. 3</b>", "5 Green Avenue, Apt. 3", "10:10", "Today",5.5, 0, false);
         categoryChildren.add(event);
+        mapEvents.add(event);
         id++;
         events.add(categoryChildren);
-        allEvents.addAll(categoryChildren);
 
 
         // Idling
         categoryChildren = new ArrayList<DriveEvent>();
-        event = new DriveEvent("12:01 near <b>Woodhouse Rd</b>", "Woodhouse Rd", "12:01", "Today", 15.0,id, false);
+        event = new DriveEvent("12:01 near <b>Woodhouse Rd</b>", "Woodhouse Rd", "12:01", "Today", 15.0,1, false);
         categoryChildren.add(event);
+        mapEvents.add(event);
         id++;
         event = new DriveEvent("10:10 near <b>Bromton Rd, SW1X 7XL</b>", "Bromton Rd, SW1X 7XL", "10:10", "Wednesday", 12.5,id, true);
         categoryChildren.add(event);
@@ -81,18 +82,16 @@ public class Data {
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
-        allEvents.addAll(categoryChildren);
 
         // Acceleration
         categoryChildren = new ArrayList<DriveEvent>();
-        event = new DriveEvent("17:20 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "17:20", "Today", 3.8,id, false);
+        event = new DriveEvent("17:20 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "17:20", "Today", 3.8,2, false);
         categoryChildren.add(event);
         id++;
-        event = new DriveEvent("17:50 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "17:50", "Today", 9.0,id, false);
+        event = new DriveEvent("17:50 near <b>20 Lombard Str.</b>", "20 Lombard Str.", "17:50", "Today", 9.0,3, false);
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
-        allEvents.addAll(categoryChildren);
 
         // Braking
         categoryChildren = new ArrayList<DriveEvent>();
@@ -100,7 +99,6 @@ public class Data {
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
-        allEvents.addAll(categoryChildren);
 
         //Over Speeding
         categoryChildren = new ArrayList<DriveEvent>();
@@ -123,7 +121,6 @@ public class Data {
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
-        allEvents.addAll(categoryChildren);
 
         // Fuel
         categoryChildren = new ArrayList<DriveEvent>();
@@ -138,7 +135,6 @@ public class Data {
         categoryChildren.add(event);
         id++;
         events.add(categoryChildren);
-        allEvents.addAll(categoryChildren);
 
         return events;
     }
@@ -147,7 +143,7 @@ public class Data {
         return events.get(categoriesId).get(eventsId);
     }
 
-    public static ArrayList<DriveEvent> getAllEvents() {
-        return allEvents;
+    public static ArrayList<DriveEvent> getMapEvents() {
+        return mapEvents;
     }
 }
