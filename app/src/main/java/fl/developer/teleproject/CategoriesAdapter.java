@@ -1,5 +1,6 @@
 package fl.developer.teleproject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -114,13 +115,12 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
         @Override
         public void onClick(View view) {
-            if (!useForOldEvents) {
+            if (!useForOldEvents || ((Integer) view.getTag()).intValue() >= 0) {
                 Intent intent = new Intent(mContext, MapsActivity.class);
                 intent.putExtra(Data.EVENT_CODE_TITLE, ((Integer) view.getTag()).intValue());
-                mContext.startActivity(intent);
+                ((Activity) mContext).startActivity(intent);
             }
         }
-
     };
 
     @Override
@@ -134,8 +134,12 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
         TextView description = (TextView) childView.findViewById(R.id.address);
         description.setText(Html.fromHtml(event.getAddress()));
+        if (!event.isFake()) {
+            childView.setTag(event.getId());
+        } else {
+            childView.setTag(-1);
+        }
 
-        childView.setTag(event.getId());
         childView.setOnClickListener(eventClickListener);
 
         return childView;
@@ -147,7 +151,7 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
     }
 
     public boolean isUseForOldEvents() {
-        return useForOldEvents;
+        return this.useForOldEvents;
     }
 
     public void setUseForOldEvents(boolean useForOldEvents) {
