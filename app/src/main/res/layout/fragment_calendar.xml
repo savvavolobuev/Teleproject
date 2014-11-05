@@ -3,8 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="256dp"
-    android:background="#333333"
-    android:layout_marginTop="16dp">
+    android:background="#333333">
 
     <ImageView
         android:id="@+id/calendar_back"
@@ -21,8 +20,10 @@
     <TextView
         android:id="@+id/header_label"
         android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:layout_width="fill_parent"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My vs site scores"
         android:textColor="@android:color/white"
@@ -43,6 +44,25 @@
         android:layout_height="wrap_content"
         android:src="@drawable/trend"
         />
+
+    <ImageButton
+        android:id="@+id/prev_week"
+        android:layout_width="36dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/header_label"
+        android:layout_alignEnd="@+id/header_label"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent" />
+
+    <ImageButton
+        android:id="@+id/last_week"
+        android:layout_width="36dp"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@id/prev_week"
+        android:layout_alignTop="@id/prev_week"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"/>
+
     <TextView
         android:id="@+id/scores_label"
         android:layout_marginTop="16dp"
@@ -56,6 +76,7 @@
         />
 
     <ImageView
+        android:id="@+id/scores_image"
         android:layout_below="@id/scores_label"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

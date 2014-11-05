@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
         </activity>

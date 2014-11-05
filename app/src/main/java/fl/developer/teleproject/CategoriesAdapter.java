@@ -1,6 +1,5 @@
 package fl.developer.teleproject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -30,6 +29,8 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
     private Context mContext;
     private ArrayList<Category> mCategories;
     private ArrayList<ArrayList<DriveEvent>> mEvents;
+
+    private boolean useForOldEvents = false;
 
     public CategoriesAdapter(Context context, ArrayList<Category> categories, ArrayList<ArrayList<DriveEvent>> events) {
         mContext = context;
@@ -93,7 +94,7 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
 
         // hardcode for new events notification
-        if (0 == groupPosition) {
+        if (0 == groupPosition && !useForOldEvents) {
             if (hasNewEvents && !isExpanded) {
                 String newLabel = " (1 new)";
                 SpannableString ss =  new SpannableString(scoreString + newLabel);
@@ -113,9 +114,11 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(mContext, MapsActivity.class);
-            intent.putExtra(Data.EVENT_CODE_TITLE, ((Integer) view.getTag()).intValue());
-            ((Activity) mContext).startActivity(intent);
+            if (!useForOldEvents) {
+                Intent intent = new Intent(mContext, MapsActivity.class);
+                intent.putExtra(Data.EVENT_CODE_TITLE, ((Integer) view.getTag()).intValue());
+                mContext.startActivity(intent);
+            }
         }
 
     };
@@ -141,5 +144,13 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i2) {
         return true;
+    }
+
+    public boolean isUseForOldEvents() {
+        return useForOldEvents;
+    }
+
+    public void setUseForOldEvents(boolean useForOldEvents) {
+        this.useForOldEvents = useForOldEvents;
     }
 }
