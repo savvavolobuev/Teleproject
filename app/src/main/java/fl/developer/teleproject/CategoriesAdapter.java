@@ -115,7 +115,8 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
         @Override
         public void onClick(View view) {
-            if (!useForOldEvents || ((Integer) view.getTag()).intValue() >= 0) {
+           // if (!useForOldEvents || ((Integer) view.getTag()).intValue() >= 0) {
+            if (((Integer) view.getTag()).intValue() >= 0) {
                 Intent intent = new Intent(mContext, MapsActivity.class);
                 intent.putExtra(Data.EVENT_CODE_TITLE, ((Integer) view.getTag()).intValue());
                 ((Activity) mContext).startActivity(intent);
