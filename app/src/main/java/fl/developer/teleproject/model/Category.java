@@ -9,18 +9,18 @@ public class Category implements Serializable{
 
     private final int iconRes;
     private final String name;
-    private final int score;
-    private int siteAverage;
+    private final double score;
+    private double siteAverage;
     private String averageSpeed;
 
-    public Category(int iconRes, String name, int score, int siteAverage) {
+    public Category(int iconRes, String name, double score, double siteAverage) {
         this.iconRes = iconRes;
         this.name = name;
         this.score = score;
         this.siteAverage = siteAverage;
     }
 
-    public Category(int iconRes, String name, int score, int siteAverage, String averageSpeed) {
+    public Category(int iconRes, String name, double score, double siteAverage, String averageSpeed) {
         this(iconRes, name, score, siteAverage);
         this.averageSpeed = averageSpeed;
     }
@@ -33,7 +33,7 @@ public class Category implements Serializable{
         return name;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
@@ -41,7 +41,7 @@ public class Category implements Serializable{
         return "site average: " + siteAverage;
     }
 
-    public int getSiteAverage() {
+    public double getSiteAverage() {
         return siteAverage;
     }
 

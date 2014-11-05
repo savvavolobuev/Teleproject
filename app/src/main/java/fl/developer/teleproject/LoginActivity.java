@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -14,7 +15,7 @@ import android.widget.ImageButton;
  */
 public class LoginActivity extends Activity {
 
-    public static int LOGIN_SUCCESFUL = 0;
+    public static int LOGIN_SUCCESFULL = 0;
     public static int LOGIN_FAILED = 1;
 
     ImageButton closeButton;
@@ -38,11 +39,14 @@ public class LoginActivity extends Activity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginActivity.this.setResult(LOGIN_SUCCESFUL);
+                LoginActivity.this.setResult(LOGIN_SUCCESFULL);
                 finish();
             }
         });
         passwordEdit = (EditText) findViewById(R.id.password);
+        if (passwordEdit.requestFocus()) {
+           getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
         passwordEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {

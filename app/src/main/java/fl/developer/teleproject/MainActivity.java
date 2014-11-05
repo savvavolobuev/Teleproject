@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.TimerTask;
 
@@ -137,6 +139,8 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_events, container, false);
+            TextView scoresLabel = (TextView) rootView.findViewById(R.id.scores_label);
+            scoresLabel.setText(Html.fromHtml("<font color=#4d4d4d>Events score</font><font color=#808080> vs site average</font>"));
             eventsView = (CategoriesView) rootView.findViewById(R.id.eventsListView);
             eventsView.setAdapter(new CategoriesAdapter(getActivity(), Data.getCategories(), Data.getEvents()));
             return rootView;
@@ -233,7 +237,7 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View view) {
                     Log.d("calendar", "toLastWeek pressed");
-                    switchWeek(false,toPrevWeek,toLastWeek,scores);
+                    switchWeek(false, toPrevWeek, toLastWeek, scores);
                 }
             });
             return rootView;
@@ -242,8 +246,7 @@ public class MainActivity extends Activity {
         private void switchWeek(boolean toPrev, ImageButton toPrevWeek, ImageButton toLastWeek, ImageView scores) {
             toLastWeek.setEnabled(toPrev);
             toPrevWeek.setEnabled(!toPrev);
-            // TODO change to real drawable
-            Bitmap nextImage = BitmapFactory.decodeResource(getResources(),toPrev ? R.drawable.cycle : R.drawable.cycle);
+            Bitmap nextImage = BitmapFactory.decodeResource(getResources(),toPrev ? R.drawable.cycle_prev : R.drawable.cycle);
             if (toPrev) {
                 Utils.imageViewAnimatedChange(getActivity(),scores,nextImage,android.R.anim.slide_out_right,android.R.anim.slide_in_left);
             } else {
