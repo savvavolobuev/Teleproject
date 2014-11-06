@@ -28,7 +28,7 @@ import fl.developer.teleproject.model.Data;
 public class MainActivity extends Activity {
 
     private static boolean isFirstShow = true;
-    public static final int WEATHER_ROTATION_DELAY = 7500;
+    public static final int WEATHER_ROTATION_DELAY = 5000;
     private InfoFragment infoFragment;
     private CalendarFragment calendarFragment;
     private EventsFragment eventsFragment;
