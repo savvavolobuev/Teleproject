@@ -2,7 +2,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="256dp"
+    android:layout_height="224dp"
     android:background="#333333">
 
     <ImageView
@@ -70,7 +70,7 @@
         android:layout_below="@id/calendar_back"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Recently daily scores"
+        android:text="Recent daily scores"
         android:gravity="center_horizontal"
         style="@style/additional_text"
         />

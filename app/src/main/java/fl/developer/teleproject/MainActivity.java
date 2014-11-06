@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.TimerTask;
 
@@ -25,7 +27,8 @@ import fl.developer.teleproject.model.Data;
 
 public class MainActivity extends Activity {
 
-    public static final int WEATHER_ROTATION_DELAY = 7000;
+    private static boolean isFirstShow = true;
+    public static final int WEATHER_ROTATION_DELAY = 3500;
     private InfoFragment infoFragment;
     private CalendarFragment calendarFragment;
     private EventsFragment eventsFragment;
@@ -36,7 +39,7 @@ public class MainActivity extends Activity {
             if (infoFragment.isVisible()) {
                 infoFragment.changeWeather();
             }
-            timer.postDelayed(changeWeatherTask, WEATHER_ROTATION_DELAY);
+            //timer.postDelayed(changeWeatherTask, WEATHER_ROTATION_DELAY);
         }
     };
 
@@ -54,30 +57,38 @@ public class MainActivity extends Activity {
                     .add(R.id.info_container, infoFragment)
                     .commit();
         }
-        timer = new Handler();
-
+        if (isFirstShow) {
+            timer = new Handler();
+            timer.postDelayed(changeWeatherTask, WEATHER_ROTATION_DELAY);
+            isFirstShow = false;
+        }
+//        Toast t = Toast.makeText(this,"Welcome back to work, Diego!",Toast.LENGTH_LONG);
+//        t.setGravity(Gravity.TOP,0,64);
+//        t.show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         //Log.d("weather", "onResume");
-        changeWeatherTask.run();
+        // changeWeatherTask.run();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         //Log.d("weather", "onPause");
-        timer.removeCallbacks(changeWeatherTask);
+        //timer.removeCallbacks(changeWeatherTask);
     }
 
     @Override
     protected void onDestroy() {
         infoFragment = null;
         calendarFragment = null;
-        timer.removeCallbacks(changeWeatherTask);
-        timer = null;
+        if (timer != null) {
+            timer.removeCallbacks(changeWeatherTask);
+            timer = null;
+        }
         super.onDestroy();
     }
 
@@ -137,6 +148,8 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_events, container, false);
+            TextView scoresLabel = (TextView) rootView.findViewById(R.id.scores_label);
+            scoresLabel.setText(Html.fromHtml("<font color=#4d4d4d>Events score</font><font color=#808080> vs site average</font>"));
             eventsView = (CategoriesView) rootView.findViewById(R.id.eventsListView);
             eventsView.setAdapter(new CategoriesAdapter(getActivity(), Data.getCategories(), Data.getEvents()));
             return rootView;
@@ -149,10 +162,11 @@ public class MainActivity extends Activity {
         public static int[] weather_backgrounds;
         public static int[] weather_texts;
         private int currentWeather = 0;
+        private static boolean isFirstShow = true;
 
         {
             weather_backgrounds = new int[]{R.drawable.background_weather,R.drawable.background_weather};
-            weather_texts = new int[]{R.drawable.weather,R.drawable.weather};
+            weather_texts = new int[]{R.drawable.weather_header, R.drawable.weather};
         }
 
         public InfoFragment() {
@@ -176,6 +190,11 @@ public class MainActivity extends Activity {
             Animation clockTurn = AnimationUtils.loadAnimation(getActivity(), R.anim.meter_anim);
             meterCursor.startAnimation(clockTurn);
             meterCursor.setVisibility(View.VISIBLE);
+            if (isFirstShow) {
+                ImageView weather = (ImageView) rootView.findViewById(R.id.weather);
+                weather.setImageResource(R.drawable.weather_header);
+                isFirstShow = false;
+            }
             return rootView;
         }
 
@@ -190,9 +209,9 @@ public class MainActivity extends Activity {
                     currentWeather = 0;
                 }
 
-                Bitmap newBackground = BitmapFactory.decodeResource(getResources(), weather_backgrounds[currentWeather]);
+                // Bitmap newBackground = BitmapFactory.decodeResource(getResources(), weather_backgrounds[currentWeather]);
                 Bitmap newText = BitmapFactory.decodeResource(getResources(), weather_texts[currentWeather]);
-                Utils.imageViewAnimatedChange(getActivity(), (ImageView) getView().findViewById(R.id.weather_background), newBackground);
+                //Utils.imageViewAnimatedChange(getActivity(), (ImageView) getView().findViewById(R.id.weather_background), newBackground);
                 Utils.imageViewAnimatedChange(getActivity(),(ImageView) getView().findViewById(R.id.weather),newText);
             }
         }
@@ -233,7 +252,7 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View view) {
                     Log.d("calendar", "toLastWeek pressed");
-                    switchWeek(false,toPrevWeek,toLastWeek,scores);
+                    switchWeek(false, toPrevWeek, toLastWeek, scores);
                 }
             });
             return rootView;
@@ -242,8 +261,7 @@ public class MainActivity extends Activity {
         private void switchWeek(boolean toPrev, ImageButton toPrevWeek, ImageButton toLastWeek, ImageView scores) {
             toLastWeek.setEnabled(toPrev);
             toPrevWeek.setEnabled(!toPrev);
-            // TODO change to real drawable
-            Bitmap nextImage = BitmapFactory.decodeResource(getResources(),toPrev ? R.drawable.cycle : R.drawable.cycle);
+            Bitmap nextImage = BitmapFactory.decodeResource(getResources(),toPrev ? R.drawable.cycle_prev : R.drawable.cycle);
             if (toPrev) {
                 Utils.imageViewAnimatedChange(getActivity(),scores,nextImage,android.R.anim.slide_out_right,android.R.anim.slide_in_left);
             } else {

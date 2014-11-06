@@ -84,7 +84,7 @@ public class Begin2Activity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(LOGIN_CODE == requestCode && LoginActivity.LOGIN_SUCCESFUL == resultCode) {
+        if(LOGIN_CODE == requestCode && LoginActivity.LOGIN_SUCCESFULL == resultCode) {
             Intent intent = new Intent(Begin2Activity.this, MainActivity.class);
             startActivity(intent);
         }
