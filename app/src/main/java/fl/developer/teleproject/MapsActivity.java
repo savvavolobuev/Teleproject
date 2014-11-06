@@ -42,9 +42,8 @@ public class MapsActivity extends Activity implements View.OnClickListener {
     private ImageView event3ImageView;
     private ImageView event4ImageView;
 
-    Data data;
     int currEvent = 0;
-    int currImg=0;
+    int startEvent = 0;
     private ArrayList<DriveEvent> events = new ArrayList<DriveEvent>();
     private ArrayList<ImageView> animImages = new ArrayList<ImageView>();
     private ArrayList<ImageView> activeButtonImages = new ArrayList<ImageView>();
@@ -54,7 +53,7 @@ public class MapsActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        events = data.getMapEvents();
+        events = Data.getMapEvents();
 
         mapBackButton = (Button) findViewById(R.id.mapBackButton);
         event1Button = (Button) findViewById(R.id.event1Button);
@@ -88,6 +87,11 @@ public class MapsActivity extends Activity implements View.OnClickListener {
         event4ImageView = (ImageView) findViewById(R.id.event4ImageView);
         activeButtonImages.addAll(Arrays.asList(event1ImageView,event2ImageView,event3ImageView,event4ImageView));
 
+        if (getIntent().getIntExtra(Data.EVENT_CODE_TITLE,0) > 3) {
+            startEvent = 4;
+        } else {
+            startEvent = 0;
+        }
         updateInfo(getIntent().getIntExtra(Data.EVENT_CODE_TITLE,0));
     }
 
@@ -115,16 +119,16 @@ public class MapsActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.event1Button:
-                updateInfo(0);
+                updateInfo(0 + startEvent);
                 break;
             case R.id.event2Button:
-                updateInfo(1);
+                updateInfo(1 + startEvent);
                 break;
             case R.id.event3Button:
-                updateInfo(2);
+                updateInfo(2 + startEvent);
                 break;
             case R.id.event4Button:
-                updateInfo(3);
+                updateInfo(3 + startEvent);
                 break;
             case R.id.mapBackButton:
                 //Intent intent = new Intent(MapsActivity.this,MainActivity.class);
@@ -133,21 +137,15 @@ public class MapsActivity extends Activity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.eventBackButton:
-                if (currEvent > 0 ) {
+                if (currEvent - startEvent > 0 ) {
                     currEvent--;
-                    if (!events.get(currEvent).isFake() && currImg > 0) {
-                        currImg--;
-                        updateInfo(currEvent);
-                    }
+                    updateInfo(currEvent);
                 }
                 break;
             case R.id.eventNextButton:
-                if (currEvent < events.size() - 1 ) {
+                if (currEvent - startEvent < events.size() - 5 ) {
                     currEvent++;
-                    if (!events.get(currEvent).isFake() && currImg < activeButtonImages.size() - 1) {
-                        currImg++;
-                        updateInfo(currEvent);
-                    }
+                    updateInfo(currEvent);
                 }
                 break;
         }
@@ -155,27 +153,14 @@ public class MapsActivity extends Activity implements View.OnClickListener {
 
     private void updateInfo(int eventId) {
         currEvent = eventId;
-        switch (eventId) {
-            case 0:
-                currImg = 0;
-                break;
-            case 1:
-                currImg = 1;
-                break;
-            case 5:
-                currImg = 2;
-                break;
-            case 6:
-                currImg = 3;
-                break;
-        }
-        if (!events.get(eventId).isFake()) {
+
+        if (eventId > -1 && eventId < events.size() && !events.get(eventId).isFake()) {
             mapTitleTextView.setText(events.get(eventId).getAddressShort());
             footerPinkTextView.setText("OverSpeeding: " + (78 + eventId*3) + " mph");
             footerGrayTextView.setText("Your average speed: " + (50 + (eventId + 1)*0.3*20) + "  site average: " + (50 + (eventId + 1)*0.3*20 - 4.2));
 
             for (int i = 0; i < animImages.size(); i++) {
-                if (i == currImg) {
+                if (i == (eventId - startEvent)) {
                     animImages.get(i).setVisibility(View.VISIBLE);
                     Animation anim = AnimationUtils.loadAnimation(this, R.anim.event_anim);
                     animImages.get(i).startAnimation(anim);
@@ -185,7 +170,7 @@ public class MapsActivity extends Activity implements View.OnClickListener {
             }
 
             for (int i = 0; i < activeButtonImages.size(); i++) {
-                if (i == currImg) {
+                if (i == (eventId - startEvent)) {
                     activeButtonImages.get(i).setVisibility(View.VISIBLE);
                 } else {
                     activeButtonImages.get(i).setVisibility(View.GONE);
