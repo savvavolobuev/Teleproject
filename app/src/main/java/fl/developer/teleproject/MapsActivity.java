@@ -137,13 +137,15 @@ public class MapsActivity extends Activity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.eventBackButton:
-                if (currEvent - startEvent > 0 ) {
+              //  if (currEvent - startEvent > 0 ) {
+                    if (currEvent  > 0 ) {
                     currEvent--;
                     updateInfo(currEvent);
                 }
                 break;
             case R.id.eventNextButton:
-                if (currEvent - startEvent < events.size() - 5 ) {
+             //   if (currEvent - startEvent < events.size() - 5 ) {
+                    if (currEvent < events.size() - 1 ) {
                     currEvent++;
                     updateInfo(currEvent);
                 }
