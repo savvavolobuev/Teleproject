@@ -162,7 +162,6 @@ public class MainActivity extends Activity {
         public static int[] weather_backgrounds;
         public static int[] weather_texts;
         private int currentWeather = 0;
-        private static boolean isFirstShow = true;
 
         {
             weather_backgrounds = new int[]{R.drawable.background_weather,R.drawable.background_weather};
