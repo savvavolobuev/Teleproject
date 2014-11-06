@@ -6,7 +6,6 @@
     android:background="#333333">
 
     <ImageView
-        android:alpha="0.75"
         android:id="@+id/calendar_back"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
