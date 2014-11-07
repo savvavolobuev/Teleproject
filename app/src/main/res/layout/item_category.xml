@@ -55,15 +55,14 @@
 
         <TextView
             android:id="@+id/category_state_indicator"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:textSize="9dp"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical"
             android:background="@drawable/indicator_opened"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="12dp"
             android:clickable="false"
             />
 
