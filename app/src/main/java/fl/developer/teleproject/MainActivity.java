@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
             resetEvents(false);
         }
         getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom)
+                .setCustomAnimations(R.anim.slide_in_top, 0)
                 .replace(R.id.info_container, calendarFragment.isVisible() ? infoFragment : calendarFragment)
                 .commit();
     }
