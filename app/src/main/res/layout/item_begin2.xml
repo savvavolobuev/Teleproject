@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
+    <LinearLayout
+        android:id="@+id/linearLayout0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_marginTop="25px">
+
     <ImageView
         android:id="@+id/personImage"
         android:layout_width="wrap_content"
@@ -14,24 +25,24 @@
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="12dp"
+
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical">
+        android:orientation="vertical">
         <TextView
             android:id="@+id/personName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3dp"
             android:text="peopleName"
-            android:textSize="23sp">
+            android:textSize="66px">
         </TextView>
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="description"
-            android:textSize="18sp"
+            android:textSize="36px"
             android:textColor="#808080">
         </TextView>
     </LinearLayout>
@@ -42,7 +53,16 @@
         android:layout_gravity="center_vertical"
         android:layout_marginRight="10dp"
         android:text="numbers"
-        android:textSize="22sp"
+        android:textSize="66px"
         android:textColor="#228B22">
     </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="900px"
+        android:layout_marginLeft="180px"
+        android:layout_marginTop="45px"
+        android:layout_height="3px"
+        android:background="#DCDCDC"
+        android:layout_below="@+id/linearLayout0"
+        />
 </LinearLayout>
