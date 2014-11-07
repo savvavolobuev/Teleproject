@@ -47,7 +47,8 @@
        android:footerDividersEnabled="false"
         android:divider="#e6e6e6"
         android:dividerHeight="0dp"
-        android:childDivider="#f2eef2"/>
+        android:childDivider="#f2eef2"
+        android:groupIndicator="@android:color/transparent"/>
 
 
 

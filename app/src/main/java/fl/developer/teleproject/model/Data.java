@@ -20,6 +20,8 @@ public class Data {
     public static final int EVENT_CODE = 1;
     public static final String EVENT_CODE_TITLE = "event";
 
+    private Data(){};
+
     static {
         categories = initCategories();
         events = initEvents();

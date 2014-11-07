@@ -23,6 +23,17 @@ import fl.developer.teleproject.model.DriveEvent;
  */
 public class CategoriesAdapter extends BaseExpandableListAdapter {
 
+    private static volatile ArrayList<Boolean> virginCategories;
+
+    private static final int CATEGORIES_COUNT = 6;
+
+    static     {
+        virginCategories = new ArrayList<Boolean>(CATEGORIES_COUNT);
+        for (int i = 0; i < CATEGORIES_COUNT; i++) {
+            virginCategories.add(Boolean.TRUE);
+        }
+    }
+
     private Context mContext;
     private ArrayList<Category> mCategories;
     private ArrayList<ArrayList<DriveEvent>> mEvents;
@@ -72,6 +83,9 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View view, ViewGroup parent) {
+        if (isExpanded && virginCategories.get(groupPosition)) {
+            virginCategories.set(groupPosition,Boolean.FALSE);
+        }
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_category, null);
@@ -86,28 +100,32 @@ public class CategoriesAdapter extends BaseExpandableListAdapter {
 
         TextView score = (TextView) view.findViewById(R.id.person_value);
         double scoreValue = 0;
+        int todayEventsCount = 0;
         for (DriveEvent child : mEvents.get(groupPosition)) {
             scoreValue += child.getScore();
+            if ("Today".equals(child.getDay())) {
+                todayEventsCount++;
+            }
         }
         String scoreString = String.valueOf(scoreValue);
         score.setText(scoreString);
         score.setTextColor(scoreValue < category.getSiteAverage() ? Color.parseColor("#ff39d000") : Color.parseColor("#ffff8800"));
 
-
-        // hardcode for new events notification
-//        if (0 == groupPosition && !useForOldEvents) {
-//            if (hasNewEvents && !isExpanded) {
-//                String newLabel = " (1 new)";
-//                SpannableString ss =  new SpannableString(scoreString + newLabel);
-//                ss.setSpan(new RelativeSizeSpan(0.6f), scoreString.length(),ss.length(), 0); // set size
-//                score.setText(ss);
-//            } else {
-//                hasNewEvents = false;
-//            }
-//        }
-
         TextView siteAverage = (TextView) view.findViewById(R.id.site_average);
         siteAverage.setText(category.getSiteAverageString());
+
+        TextView indicator = (TextView) view.findViewById(R.id.category_state_indicator);
+        if (useForOldEvents || !virginCategories.get(groupPosition)) {
+            indicator.setText("");
+            indicator.setBackgroundResource(isExpanded ? R.drawable.indicator_opened : R.drawable.indicator_closed);
+        } else if (todayEventsCount > 0) {
+            indicator.setText("+" + todayEventsCount);
+            indicator.setBackgroundResource(R.drawable.indicator_new);
+        } else {
+            indicator.setText("");
+            indicator.setBackgroundResource(isExpanded ? R.drawable.indicator_opened : R.drawable.indicator_closed);
+        }
+
         return view;
     }
 

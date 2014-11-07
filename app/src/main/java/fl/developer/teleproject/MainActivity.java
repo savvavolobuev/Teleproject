@@ -93,6 +93,9 @@ public class MainActivity extends Activity {
     }
 
     private void changeInfoFragment() {
+        if (calendarFragment.isVisible()) {
+            resetEvents(false);
+        }
         getFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_top, R.anim.slide_out_bottom)
                 .replace(R.id.info_container, calendarFragment.isVisible() ? infoFragment : calendarFragment)
