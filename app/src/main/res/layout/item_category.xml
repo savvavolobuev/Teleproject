@@ -16,7 +16,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        >
 
         <ImageView
             android:id="@+id/icon"
@@ -31,7 +32,7 @@
             android:layout_gravity="center_vertical"
             android:gravity="center_vertical"
             android:layout_width="96dp"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:text="Acceleration:" />
 
         <TextView
@@ -54,15 +55,14 @@
 
         <TextView
             android:id="@+id/category_state_indicator"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:textSize="9dp"
             android:gravity="center"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical"
             android:background="@drawable/indicator_opened"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="12dp"
             android:clickable="false"
             />
 
