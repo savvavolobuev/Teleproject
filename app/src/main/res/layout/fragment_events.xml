@@ -8,14 +8,29 @@
     tools:context="fl.developer.teleproject.MainActivity.EventsFragment"
     android:background="#ffe5e5e5">
 
-    <TextView
-        android:paddingLeft="12dp"
-        android:id="@+id/scores_label"
-        android:text="Events score vs site average"
-        android:textSize="22dp"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#808080" />
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/scores_label">
+        <TextView
+            android:id="@+id/scores_label1"
+            android:text="Events score"
+            android:textSize="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4d4d4d"  />
+        <TextView
+            android:id="@+id/scores_label2"
+            android:text=" vs site average"
+            android:textSize="22dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:fontFamily="sans-serif-thin"/>
+        </LinearLayout>
+
 
     <view
         android:layout_marginTop="8dp"
