@@ -159,11 +159,15 @@ public class MapsActivity extends Activity implements View.OnClickListener {
         if (eventId > -1 && eventId < events.size() && !events.get(eventId).isFake()) {
             mapTitleTextView.setText(events.get(eventId).getAddressShort());
             if (eventId == 0) {
-                footerPinkTextView.setText("Revving: " + (78 + eventId*3) + " mph");
-                footerGrayTextView.setText("Your average speed: " + 5.5 + "  site average: " + 11.1);
+               // footerPinkTextView.setText("Revving: " + (78 + eventId*3) + " mph");
+                footerPinkTextView.setText("Revving: " + "5.5");
+               // footerGrayTextView.setText("Your average speed: " + 5.5 + "  site average: " + 11.1);
+                footerGrayTextView.setText("Your average: 3.8"  + "  site average: " + 5.5);
             } else if (eventId == 1) { //  idle time 41:00  site avarage 42:20
-                footerPinkTextView.setText("Idle: " + (78 + eventId*3) + " mph");
-                footerGrayTextView.setText("Your average time: 41:00  site average: 42:20");
+                //footerPinkTextView.setText("Idle: " + (78 + eventId*3) + " mph");
+                //footerGrayTextView.setText("Your average time: 41:00  site average: 42:20");
+                footerPinkTextView.setText("Idle time: " + "41:00");
+                footerGrayTextView.setText("Your average: 37:00  site average: 39:20");
             } else {
                 footerPinkTextView.setText("OverSpeeding: " + (78 + eventId*3) + " mph");
                 footerGrayTextView.setText("Your average speed: " + (50 + (eventId + 1)*0.3*20) + "  site average: " + (50 + (eventId + 1)*0.3*20 - 4.2));
