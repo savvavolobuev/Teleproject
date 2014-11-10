@@ -51,7 +51,7 @@ public class Data {
         categories.add(category);
         category = new Category(R.drawable.breaking, "Breaking:", 1.3, 3.8);
         categories.add(category);
-        category = new Category(R.drawable.speeding, "Over Speeding:", 66.0, 59.2);
+        category = new Category(R.drawable.overspeeding, "Over Speeding:", 66.0, 59.2);
         categories.add(category);
         category = new Category(R.drawable.fuel, "Fuel:", 22.2, 21.0);
         categories.add(category);
