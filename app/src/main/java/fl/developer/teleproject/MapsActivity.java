@@ -158,8 +158,16 @@ public class MapsActivity extends Activity implements View.OnClickListener {
 
         if (eventId > -1 && eventId < events.size() && !events.get(eventId).isFake()) {
             mapTitleTextView.setText(events.get(eventId).getAddressShort());
-            footerPinkTextView.setText("OverSpeeding: " + (78 + eventId*3) + " mph");
-            footerGrayTextView.setText("Your average speed: " + (50 + (eventId + 1)*0.3*20) + "  site average: " + (50 + (eventId + 1)*0.3*20 - 4.2));
+            if (eventId == 0) {
+                footerPinkTextView.setText("Revving: " + (78 + eventId*3) + " mph");
+                footerGrayTextView.setText("Your average speed: " + 5.5 + "  site average: " + 11.1);
+            } else if (eventId == 1) { //  idle time 41:00  site avarage 42:20
+                footerPinkTextView.setText("Idle: " + (78 + eventId*3) + " mph");
+                footerGrayTextView.setText("Your average time: 41:00  site average: 42:20");
+            } else {
+                footerPinkTextView.setText("OverSpeeding: " + (78 + eventId*3) + " mph");
+                footerGrayTextView.setText("Your average speed: " + (50 + (eventId + 1)*0.3*20) + "  site average: " + (50 + (eventId + 1)*0.3*20 - 4.2));
+            }
 
             for (int i = 0; i < animImages.size(); i++) {
                 if (i == (eventId - startEvent)) {
