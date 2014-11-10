@@ -27,7 +27,7 @@
             android:textSize="54px"
             android:background="@null"
             android:editable="false"
-            android:layout_marginLeft="24px"/>
+            android:layout_marginLeft="10px"/>
 
         <LinearLayout
             android:layout_width="fill_parent"
