@@ -222,6 +222,8 @@ public class MainActivity extends Activity {
 
     public static class CalendarFragment extends Fragment {
 
+        private TextView scoresLabel;
+
 
         public CalendarFragment() {
         }
@@ -258,6 +260,7 @@ public class MainActivity extends Activity {
                     switchWeek(false, toPrevWeek, toLastWeek, scores);
                 }
             });
+            scoresLabel = (TextView) rootView.findViewById(R.id.scores_label);
             return rootView;
         }
 
@@ -270,6 +273,7 @@ public class MainActivity extends Activity {
             } else {
                 Utils.imageViewAnimatedChange(getActivity(),scores,nextImage,R.anim.slide_out_left,R.anim.slide_in_right);
             }
+            scoresLabel.setText(toPrev? "Daily scores" : "Recent daily scores");
             ((MainActivity) getActivity()).resetEvents(toPrev);
         }
     }
