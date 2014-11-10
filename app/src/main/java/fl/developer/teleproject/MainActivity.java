@@ -151,8 +151,8 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_events, container, false);
-            TextView scoresLabel = (TextView) rootView.findViewById(R.id.scores_label);
-            scoresLabel.setText(Html.fromHtml("<font color=#4d4d4d>Events score</font><font color=#808080> vs site average</font>"));
+            //TextView scoresLabel = (TextView) rootView.findViewById(R.id.scores_label);
+            //scoresLabel.setText(Html.fromHtml("<font color=#4d4d4d>Events score</font><font color=#808080 > vs site average</font>"));
             eventsView = (CategoriesView) rootView.findViewById(R.id.eventsListView);
             eventsView.setAdapter(new CategoriesAdapter(getActivity(), Data.getCategories(), Data.getEvents()));
             return rootView;
